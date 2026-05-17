@@ -1,0 +1,393 @@
+/* ============================================================
+   PAGE TRANSITIONS — Swup
+   Tambahkan ke bagian akhir app.css
+   ============================================================ */
+
+/* Container transisi */
+#swup {
+    /* Swup akan membungkus konten halaman */
+}
+
+/* Animasi fade + slide naik */
+.transition-fade {
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+html.is-animating .transition-fade {
+    opacity: 0;
+    transform: translateY(16px);
+}
+
+html.is-leaving .transition-fade {
+    opacity: 0;
+    transform: translateY(-8px);
+}
+
+/* Navbar link: animasi underline saat hover */
+.navbar__menu a {
+    position: relative;
+}
+.navbar__menu a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 50%; right: 50%;
+    height: 2px;
+    background: var(--emas);
+    transition: left 0.25s ease, right 0.25s ease;
+    border-radius: 2px;
+}
+.navbar__menu a:hover::after,
+.navbar__menu a.active::after {
+    left: 8px;
+    right: 8px;
+}
+
+/* Smooth scroll untuk semua anchor */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Animasi masuk untuk card-card saat halaman load */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.berita-card,
+.lembaga-card,
+.profil-card,
+.galeri-item,
+.stat-card {
+    animation: fadeInUp 0.4s ease both;
+}
+
+/* Stagger delay untuk grid items */
+.berita-card:nth-child(1), .lembaga-card:nth-child(1), .galeri-item:nth-child(1)  { animation-delay: 0.05s; }
+.berita-card:nth-child(2), .lembaga-card:nth-child(2), .galeri-item:nth-child(2)  { animation-delay: 0.10s; }
+.berita-card:nth-child(3), .lembaga-card:nth-child(3), .galeri-item:nth-child(3)  { animation-delay: 0.15s; }
+.berita-card:nth-child(4), .lembaga-card:nth-child(4), .galeri-item:nth-child(4)  { animation-delay: 0.20s; }
+.berita-card:nth-child(5), .lembaga-card:nth-child(5), .galeri-item:nth-child(5)  { animation-delay: 0.25s; }
+.berita-card:nth-child(6), .lembaga-card:nth-child(6), .galeri-item:nth-child(6)  { animation-delay: 0.30s; }
+
+/* Loading bar di atas halaman saat transisi */
+#swup-progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    background: var(--emas);
+    z-index: 9999;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 8px rgba(200,149,42,0.6);
+}
+
+
+/* ============================================================
+   ADMIN PANEL STYLES
+   ============================================================ */
+
+/* Layout admin */
+.admin-layout {
+    display: flex;
+    min-height: 100vh;
+    font-family: var(--font-ui);
+}
+
+/* Sidebar */
+.admin-sidebar {
+    width: 240px;
+    background: var(--teks);
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    z-index: 100;
+    overflow-y: auto;
+}
+
+.admin-sidebar__brand {
+    padding: 1.5rem 1.25rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.admin-sidebar__logo {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--emas);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-size: 13px; font-weight: 700;
+    color: var(--hijau);
+    flex-shrink: 0;
+}
+.admin-sidebar__title {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.3;
+}
+.admin-sidebar__sub {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.4);
+}
+
+.admin-nav {
+    padding: 1rem 0;
+    flex: 1;
+}
+.admin-nav__section {
+    padding: 0.75rem 1.25rem 0.4rem;
+    font-size: 0.62rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+.admin-nav__link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.6rem 1.25rem;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.55);
+    transition: color var(--transition), background var(--transition);
+    border-left: 3px solid transparent;
+}
+.admin-nav__link:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.06);
+}
+.admin-nav__link.active {
+    color: var(--emas);
+    background: rgba(200,149,42,0.1);
+    border-left-color: var(--emas);
+}
+.admin-nav__icon { font-size: 1rem; width: 18px; text-align: center; }
+
+.admin-sidebar__footer {
+    padding: 1rem 1.25rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+/* Main content area */
+.admin-main {
+    margin-left: 240px;
+    flex: 1;
+    background: #f5f5f0;
+    min-height: 100vh;
+}
+
+/* Admin topbar */
+.admin-topbar {
+    background: #fff;
+    border-bottom: 1px solid #e8e4d8;
+    padding: 0 1.75rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+.admin-topbar__title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--teks);
+}
+.admin-topbar__user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: var(--teks-2);
+}
+.admin-topbar__avatar {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--emas);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700;
+    color: var(--hijau);
+}
+
+/* Admin content */
+.admin-content {
+    padding: 1.75rem;
+}
+
+/* Admin cards */
+.admin-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+.admin-stat-card {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    border: 1px solid #e8e4d8;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.admin-stat-card__icon {
+    width: 44px; height: 44px;
+    border-radius: var(--radius);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+.admin-stat-card__icon--hijau  { background: rgba(45,80,22,0.1); }
+.admin-stat-card__icon--emas   { background: rgba(200,149,42,0.1); }
+.admin-stat-card__icon--coklat { background: rgba(107,58,31,0.1); }
+.admin-stat-card__icon--merah  { background: rgba(220,53,69,0.1); }
+.admin-stat-card__num {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--teks);
+    font-weight: 700;
+    line-height: 1;
+}
+.admin-stat-card__lbl {
+    font-size: 0.75rem;
+    color: var(--teks-muted);
+    margin-top: 2px;
+}
+
+/* Admin table */
+.admin-card {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    border: 1px solid #e8e4d8;
+    overflow: hidden;
+}
+.admin-card__header {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid #e8e4d8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.admin-card__title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--teks);
+}
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+}
+.admin-table th {
+    background: #faf9f5;
+    padding: 0.7rem 1.25rem;
+    text-align: left;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--teks-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid #e8e4d8;
+}
+.admin-table td {
+    padding: 0.85rem 1.25rem;
+    border-bottom: 0.5px solid #f0ede4;
+    color: var(--teks);
+    vertical-align: middle;
+}
+.admin-table tr:last-child td { border-bottom: none; }
+.admin-table tr:hover td { background: #faf9f5; }
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+.badge--hijau  { background: rgba(45,80,22,0.12);  color: var(--hijau); }
+.badge--emas   { background: rgba(200,149,42,0.12); color: #8a6010; }
+.badge--merah  { background: rgba(220,53,69,0.12);  color: #b91c1c; }
+.badge--abu    { background: rgba(100,100,100,0.1); color: #555; }
+
+/* Form admin */
+.admin-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+}
+.admin-form-grid--full { grid-column: 1 / -1; }
+
+.form-group { margin-bottom: 0; }
+
+/* Btn kecil untuk aksi tabel */
+.btn-sm {
+    padding: 0.3rem 0.75rem;
+    font-size: 0.75rem;
+    border-radius: var(--radius);
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-ui);
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: all var(--transition);
+    text-decoration: none;
+}
+.btn-sm--edit   { background: rgba(45,80,22,0.1);  color: var(--hijau); }
+.btn-sm--hapus  { background: rgba(220,53,69,0.1);  color: #b91c1c; }
+.btn-sm--view   { background: rgba(200,149,42,0.1); color: #8a6010; }
+.btn-sm--edit:hover  { background: var(--hijau);  color: #fff; }
+.btn-sm--hapus:hover { background: #b91c1c; color: #fff; }
+.btn-sm--view:hover  { background: var(--emas);   color: #fff; }
+
+/* Upload preview foto */
+.foto-preview {
+    width: 100%;
+    max-height: 220px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    border: 1px solid #e8e4d8;
+    margin-top: 0.5rem;
+    display: none;
+}
+.foto-preview.show { display: block; }
+
+/* Select & textarea admin */
+select.form-control {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238C6A4A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 2.5rem;
+    cursor: pointer;
+}
+
+/* Pagination admin */
+.admin-pagination {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 6px;
+    padding: 1rem 1.25rem;
+    border-top: 1px solid #e8e4d8;
+    font-size: 0.8rem;
+    color: var(--teks-muted);
+}

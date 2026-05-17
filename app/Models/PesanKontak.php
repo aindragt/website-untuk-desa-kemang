@@ -1,0 +1,16 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class PesanKontak extends Model
+{
+    protected $table = 'pesan_kontak';
+
+    protected $fillable = ['nama', 'kontak', 'pesan', 'is_read'];
+
+    protected $casts = [
+        'is_read' => 'boolean',
+    ];
+}
