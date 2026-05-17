@@ -23,7 +23,7 @@
                 @endif
                 <div style="font-size:0.78rem;font-weight:500;color:var(--teks);margin-bottom:2px">{{ Str::limit($foto->judul, 30) }}</div>
                 <div style="margin-bottom:6px"><span class="badge badge--emas" style="font-size:0.62rem">{{ $kategoriList[$foto->kategori] ?? $foto->kategori }}</span></div>
-                <div style="display:flex;gap:4px">
+                {{-- <div style="display:flex;gap:4px">
                     <form action="{{ route('operator.galeri.toggle', $foto) }}" method="POST" style="flex:1">
                         @csrf @method('PATCH')
                         <button type="submit" class="btn-sm {{ $foto->is_active ? 'btn-sm--view' : 'btn-sm--edit' }}"
@@ -31,13 +31,13 @@
                             {{ $foto->is_active ? '🙈' : '👁️' }}
                         </button>
                     </form>
-                    {{-- <form action="{{ route('operator.galeri.destroy', $foto) }}" method="POST" style="flex:1">
+                    <form action="{{ route('operator.galeri.destroy', $foto) }}" method="POST" style="flex:1">
                         @csrf @method('DELETE')
                         <button type="submit" class="btn-sm btn-sm--hapus"
                                 style="width:100%;justify-content:center;font-size:0.68rem"
                                 onclick="return confirm('Hapus foto ini?')">🗑️</button>
-                    </form> --}}
-                </div>
+                    </form>
+                </div> --}}
             </div>
             @endforeach
         </div>
