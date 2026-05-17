@@ -79,6 +79,13 @@
             </a>
         </nav>
 
+        {{-- Info role di sidebar bawah --}}
+        <div style="padding:0.75rem 1.25rem;background:rgba(200,149,42,0.08);border-top:1px solid rgba(255,255,255,0.06);margin-bottom:0">
+            <div style="font-family:var(--font-ui);font-size:0.68rem;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px">Login sebagai</div>
+            <div style="font-family:var(--font-ui);font-size:0.82rem;color:var(--emas);font-weight:500">{{ session('user_nama') }}</div>
+            <div style="font-family:var(--font-ui);font-size:0.7rem;color:rgba(255,255,255,0.35)">Admin Desa</div>
+        </div>
+
         <div class="admin-sidebar__footer">
             <a href="{{ route('home') }}" target="_blank"
                style="display:flex;align-items:center;gap:8px;font-size:0.78rem;color:rgba(255,255,255,0.4);margin-bottom:0.75rem;transition:color 0.2s">
@@ -100,8 +107,14 @@
         <div class="admin-topbar">
             <div class="admin-topbar__title">@yield('page-title', 'Dashboard')</div>
             <div class="admin-topbar__user">
-                <div class="admin-topbar__avatar">{{ strtoupper(substr(session('admin_username', 'A'), 0, 1)) }}</div>
-                <span>{{ session('admin_username', 'Admin') }}</span>
+                {{-- Badge role admin --}}
+                <span style="background:rgba(45,80,22,0.1);color:var(--hijau);font-family:var(--font-ui);font-size:0.68rem;font-weight:600;padding:2px 9px;border-radius:999px;letter-spacing:0.05em">
+                    ADMIN
+                </span>
+                <div class="admin-topbar__avatar" style="background:var(--hijau-muda)">
+                    {{ strtoupper(substr(session('user_nama', 'O'), 0, 1)) }}
+                </div>
+                <span>{{ session('user_nama') }}</span>
             </div>
         </div>
 

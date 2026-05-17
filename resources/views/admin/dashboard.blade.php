@@ -4,6 +4,20 @@
 
 @section('content')
 
+{{-- Banner perbedaan akses --}}
+<div style="background:linear-gradient(135deg,var(--hijau),var(--hijau-muda));border-radius:var(--radius-lg);padding:1.25rem 1.5rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem">
+    <div style="font-size:1.75rem">👑</div>
+    <div>
+        <div style="font-family:var(--font-display);font-size:0.95rem;color:#fff;margin-bottom:2px">
+            Selamat datang, {{ session('user_nama') }}!
+        </div>
+        <div style="font-family:var(--font-ui);font-size:0.78rem;color:rgba(255,255,255,0.65)">
+            Anda login sebagai <strong style="color:var(--emas)">Admin Desa</strong>.
+            Semua fitur terbuka — Anda memiliki akses penuh.
+        </div>
+    </div>
+</div>
+
 <div class="admin-stat-grid">
     <div class="admin-stat-card">
         <div class="admin-stat-card__icon admin-stat-card__icon--hijau">📰</div>
