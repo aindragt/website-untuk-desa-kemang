@@ -1144,20 +1144,25 @@ html {
 
 
 /* ============================================================
-   ADMIN PANEL STYLES
+   PANEL ADMIN & OPERATOR — Tema Selaras Website Desa Kemang
+   Tambahkan/ganti bagian "ADMIN PANEL STYLES" di app.css
    ============================================================ */
 
-/* Layout admin */
+/* ============================================================
+   ADMIN LAYOUT
+   ============================================================ */
 .admin-layout {
     display: flex;
     min-height: 100vh;
     font-family: var(--font-ui);
 }
 
-/* Sidebar */
+/* ============================================================
+   SIDEBAR — Hijau tua + emas (selaras dengan navbar website)
+   ============================================================ */
 .admin-sidebar {
     width: 240px;
-    background: var(--teks);
+    background: var(--hijau-tua);  /* hijau gelap, sama dengan hero website */
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
@@ -1165,86 +1170,115 @@ html {
     top: 0; left: 0; bottom: 0;
     z-index: 100;
     overflow-y: auto;
+    border-right: 1px solid rgba(200,149,42,0.15);
 }
 
+/* Brand / Logo di sidebar */
 .admin-sidebar__brand {
-    padding: 1.5rem 1.25rem;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 1.25rem 1.25rem 1rem;
+    border-bottom: 1px solid rgba(200,149,42,0.2);
     display: flex;
     align-items: center;
     gap: 10px;
 }
 .admin-sidebar__logo {
-    width: 36px; height: 36px;
+    width: 38px; height: 38px;
     border-radius: 50%;
     background: var(--emas);
     display: flex; align-items: center; justify-content: center;
     font-family: var(--font-display);
-    font-size: 13px; font-weight: 700;
-    color: var(--hijau);
+    font-size: 14px; font-weight: 700;
+    color: var(--hijau-tua);
     flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(200,149,42,0.3);
 }
 .admin-sidebar__title {
-    font-size: 0.82rem;
-    font-weight: 600;
+    font-family: var(--font-display);
+    font-size: 0.88rem;
+    font-weight: 700;
     color: #fff;
-    line-height: 1.3;
+    line-height: 1.2;
 }
 .admin-sidebar__sub {
-    font-size: 0.65rem;
-    color: rgba(255,255,255,0.4);
+    font-family: var(--font-ui);
+    font-size: 0.62rem;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.04em;
 }
 
+/* Navigasi sidebar */
 .admin-nav {
-    padding: 1rem 0;
+    padding: 0.75rem 0;
     flex: 1;
 }
 .admin-nav__section {
-    padding: 0.75rem 1.25rem 0.4rem;
-    font-size: 0.62rem;
+    padding: 0.75rem 1.25rem 0.3rem;
+    font-family: var(--font-ui);
+    font-size: 0.6rem;
     font-weight: 700;
-    color: rgba(255,255,255,0.3);
-    letter-spacing: 0.12em;
+    color: rgba(200,149,42,0.5);
+    letter-spacing: 0.15em;
     text-transform: uppercase;
 }
 .admin-nav__link {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 0.6rem 1.25rem;
+    padding: 0.55rem 1.25rem;
+    font-family: var(--font-ui);
     font-size: 0.82rem;
     color: rgba(255,255,255,0.55);
-    transition: color var(--transition), background var(--transition);
+    transition: color 0.2s, background 0.2s, border-color 0.2s;
     border-left: 3px solid transparent;
+    text-decoration: none;
+    position: relative;
 }
 .admin-nav__link:hover {
-    color: #fff;
-    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.9);
+    background: rgba(200,149,42,0.08);
 }
 .admin-nav__link.active {
     color: var(--emas);
-    background: rgba(200,149,42,0.1);
+    background: rgba(200,149,42,0.12);
     border-left-color: var(--emas);
 }
-.admin-nav__icon { font-size: 1rem; width: 18px; text-align: center; }
-
-.admin-sidebar__footer {
-    padding: 1rem 1.25rem;
-    border-top: 1px solid rgba(255,255,255,0.08);
+.admin-nav__icon {
+    font-size: 1rem;
+    width: 18px;
+    text-align: center;
+    flex-shrink: 0;
 }
 
-/* Main content area */
+/* Footer sidebar */
+.admin-sidebar__footer {
+    padding: 1rem 1.25rem;
+    border-top: 1px solid rgba(200,149,42,0.15);
+}
+
+/* Motif emas tipis di bawah brand — sentuhan Melayu */
+.admin-sidebar__motif {
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--emas), transparent);
+    opacity: 0.4;
+    margin: 0;
+}
+
+/* ============================================================
+   MAIN CONTENT AREA
+   ============================================================ */
 .admin-main {
     margin-left: 240px;
     flex: 1;
-    background: #f5f5f0;
+    background: #f5f2eb; /* krem sangat muda, senada dengan website */
     min-height: 100vh;
 }
 
-/* Admin topbar */
+/* ============================================================
+   TOPBAR — Krem/putih gading dengan aksen emas
+   ============================================================ */
 .admin-topbar {
-    background: #fff;
-    border-bottom: 1px solid #e8e4d8;
+    background: var(--putih-gading);
+    border-bottom: 2px solid var(--emas); /* garis emas di bawah topbar */
     padding: 0 1.75rem;
     height: 56px;
     display: flex;
@@ -1253,144 +1287,169 @@ html {
     position: sticky;
     top: 0;
     z-index: 50;
+    box-shadow: 0 2px 12px rgba(44,26,14,0.06);
 }
 .admin-topbar__title {
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 700;
     color: var(--teks);
 }
 .admin-topbar__user {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 0.8rem;
+    font-family: var(--font-ui);
+    font-size: 0.82rem;
     color: var(--teks-2);
 }
 .admin-topbar__avatar {
-    width: 30px; height: 30px;
+    width: 32px; height: 32px;
     border-radius: 50%;
     background: var(--emas);
     display: flex; align-items: center; justify-content: center;
-    font-size: 11px; font-weight: 700;
-    color: var(--hijau);
+    font-family: var(--font-display);
+    font-size: 12px; font-weight: 700;
+    color: var(--hijau-tua);
 }
 
-/* Admin content */
+/* ============================================================
+   CONTENT AREA
+   ============================================================ */
 .admin-content {
     padding: 1.75rem;
 }
 
-/* Admin cards */
+/* ============================================================
+   STAT CARDS — hijau & emas
+   ============================================================ */
 .admin-stat-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.75rem;
 }
 .admin-stat-card {
     background: #fff;
     border-radius: var(--radius-lg);
     padding: 1.25rem;
-    border: 1px solid #e8e4d8;
+    border: 1px solid var(--krem-tua);
+    border-top: 3px solid var(--emas); /* aksen emas di atas kartu */
     display: flex;
     align-items: center;
     gap: 1rem;
+    transition: box-shadow 0.2s, transform 0.2s;
+    text-decoration: none;
+}
+.admin-stat-card:hover {
+    box-shadow: 0 4px 16px rgba(44,26,14,0.1);
+    transform: translateY(-2px);
 }
 .admin-stat-card__icon {
-    width: 44px; height: 44px;
+    width: 46px; height: 46px;
     border-radius: var(--radius);
     display: flex; align-items: center; justify-content: center;
     font-size: 1.25rem;
     flex-shrink: 0;
 }
-.admin-stat-card__icon--hijau  { background: rgba(45,80,22,0.1); }
-.admin-stat-card__icon--emas   { background: rgba(200,149,42,0.1); }
-.admin-stat-card__icon--coklat { background: rgba(107,58,31,0.1); }
-.admin-stat-card__icon--merah  { background: rgba(220,53,69,0.1); }
+.admin-stat-card__icon--hijau  { background: rgba(45,80,22,0.1);  }
+.admin-stat-card__icon--emas   { background: rgba(200,149,42,0.12); }
+.admin-stat-card__icon--coklat { background: rgba(107,58,31,0.1);  }
+.admin-stat-card__icon--merah  { background: rgba(220,53,69,0.1);  }
+
 .admin-stat-card__num {
     font-family: var(--font-display);
-    font-size: 1.5rem;
-    color: var(--teks);
+    font-size: 1.75rem;
+    color: var(--hijau);
     font-weight: 700;
     line-height: 1;
 }
 .admin-stat-card__lbl {
-    font-size: 0.75rem;
+    font-family: var(--font-ui);
+    font-size: 0.72rem;
     color: var(--teks-muted);
-    margin-top: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 4px;
 }
 
-/* Admin table */
+/* ============================================================
+   CARD / TABLE CONTAINER
+   ============================================================ */
 .admin-card {
     background: #fff;
     border-radius: var(--radius-lg);
-    border: 1px solid #e8e4d8;
+    border: 1px solid var(--krem-tua);
     overflow: hidden;
+    box-shadow: 0 1px 4px rgba(44,26,14,0.05);
 }
 .admin-card__header {
     padding: 1rem 1.25rem;
-    border-bottom: 1px solid #e8e4d8;
+    border-bottom: 1px solid var(--krem-tua);
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
     flex-wrap: wrap;
+    background: var(--putih-gading);
 }
 .admin-card__title {
-    font-size: 0.875rem;
-    font-weight: 600;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 700;
     color: var(--teks);
 }
+
+/* ============================================================
+   TABLE
+   ============================================================ */
 .admin-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.82rem;
 }
 .admin-table th {
-    background: #faf9f5;
-    padding: 0.7rem 1.25rem;
+    background: var(--krem);
+    padding: 0.65rem 1.25rem;
     text-align: left;
-    font-size: 0.7rem;
-    font-weight: 600;
-    color: var(--teks-muted);
+    font-family: var(--font-ui);
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--teks-2);
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    border-bottom: 1px solid #e8e4d8;
+    border-bottom: 1px solid var(--krem-tua);
 }
 .admin-table td {
-    padding: 0.85rem 1.25rem;
-    border-bottom: 0.5px solid #f0ede4;
+    padding: 0.8rem 1.25rem;
+    border-bottom: 0.5px solid var(--krem);
     color: var(--teks);
     vertical-align: middle;
+    font-family: var(--font-ui);
 }
 .admin-table tr:last-child td { border-bottom: none; }
-.admin-table tr:hover td { background: #faf9f5; }
+.admin-table tr:hover td { background: #faf8f3; }
 
-/* Badges */
+/* ============================================================
+   BADGES
+   ============================================================ */
 .badge {
     display: inline-block;
-    padding: 2px 9px;
+    padding: 2px 10px;
     border-radius: 999px;
+    font-family: var(--font-ui);
     font-size: 0.68rem;
     font-weight: 600;
     letter-spacing: 0.05em;
 }
-.badge--hijau  { background: rgba(45,80,22,0.12);  color: var(--hijau); }
-.badge--emas   { background: rgba(200,149,42,0.12); color: #8a6010; }
-.badge--merah  { background: rgba(220,53,69,0.12);  color: #b91c1c; }
-.badge--abu    { background: rgba(100,100,100,0.1); color: #555; }
+.badge--hijau  { background: rgba(45,80,22,0.1);   color: var(--hijau); }
+.badge--emas   { background: rgba(200,149,42,0.12); color: #7a5c10; }
+.badge--merah  { background: rgba(220,53,69,0.1);   color: #b91c1c; }
+.badge--abu    { background: rgba(100,100,100,0.08); color: #666; }
 
-/* Form admin */
-.admin-form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.25rem;
-}
-.admin-form-grid--full { grid-column: 1 / -1; }
-
-.form-group { margin-bottom: 0; }
-
-/* Btn kecil untuk aksi tabel */
+/* ============================================================
+   TOMBOL AKSI TABEL (btn-sm)
+   ============================================================ */
 .btn-sm {
     padding: 0.3rem 0.75rem;
     font-size: 0.75rem;
@@ -1402,29 +1461,47 @@ html {
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    transition: all var(--transition);
+    transition: all 0.2s;
     text-decoration: none;
 }
-.btn-sm--edit   { background: rgba(45,80,22,0.1);  color: var(--hijau); }
-.btn-sm--hapus  { background: rgba(220,53,69,0.1);  color: #b91c1c; }
-.btn-sm--view   { background: rgba(200,149,42,0.1); color: #8a6010; }
+.btn-sm--edit  { background: rgba(45,80,22,0.1);   color: var(--hijau); }
+.btn-sm--hapus { background: rgba(220,53,69,0.1);   color: #b91c1c;     }
+.btn-sm--view  { background: rgba(200,149,42,0.12); color: #7a5c10;     }
+
 .btn-sm--edit:hover  { background: var(--hijau);  color: #fff; }
-.btn-sm--hapus:hover { background: #b91c1c; color: #fff; }
-.btn-sm--view:hover  { background: var(--emas);   color: #fff; }
+.btn-sm--hapus:hover { background: #b91c1c;       color: #fff; }
+.btn-sm--view:hover  { background: var(--emas);   color: var(--hijau-tua); }
 
-/* Upload preview foto */
-.foto-preview {
-    width: 100%;
-    max-height: 220px;
-    object-fit: cover;
-    border-radius: var(--radius);
-    border: 1px solid #e8e4d8;
-    margin-top: 0.5rem;
-    display: none;
+/* ============================================================
+   FORM ELEMENTS di panel
+   ============================================================ */
+.form-label {
+    display: block;
+    font-family: var(--font-ui);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--teks-2);
+    margin-bottom: 0.4rem;
 }
-.foto-preview.show { display: block; }
-
-/* Select & textarea admin */
+.form-control {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border: 1px solid var(--krem-tua);
+    border-radius: var(--radius);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: var(--teks);
+    background: var(--putih-gading);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+}
+.form-control:focus {
+    border-color: var(--emas);
+    box-shadow: 0 0 0 3px rgba(200,149,42,0.15);
+    background: #fff;
+}
+.form-control::placeholder { color: var(--teks-muted); opacity: 0.7; }
+textarea.form-control { resize: vertical; min-height: 100px; }
 select.form-control {
     appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238C6A4A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
@@ -1434,14 +1511,164 @@ select.form-control {
     cursor: pointer;
 }
 
-/* Pagination admin */
+/* ============================================================
+   BTN PRIMARY (tombol submit panel)
+   ============================================================ */
+.btn { /* sudah ada di app.css, ini override untuk panel */ }
+.btn--primary {
+    background: var(--hijau);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    padding: 0.8rem 1.5rem;
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    transition: background 0.2s, transform 0.2s;
+}
+.btn--primary:hover {
+    background: var(--hijau-muda);
+    transform: translateY(-1px);
+}
+
+/* ============================================================
+   ALERT / FLASH MESSAGE
+   ============================================================ */
+.alert {
+    padding: 0.9rem 1.25rem;
+    border-radius: var(--radius);
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+.alert--success {
+    background: rgba(45,80,22,0.08);
+    border: 1px solid rgba(45,80,22,0.25);
+    color: var(--hijau);
+}
+.alert--error {
+    background: rgba(220,53,69,0.07);
+    border: 1px solid rgba(220,53,69,0.25);
+    color: #b91c1c;
+}
+
+/* ============================================================
+   UPLOAD FOTO PREVIEW
+   ============================================================ */
+.foto-preview {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    border: 1px solid var(--krem-tua);
+    margin-top: 0.5rem;
+    display: none;
+}
+.foto-preview.show { display: block; }
+
+/* ============================================================
+   PAGINATION di tabel admin
+   ============================================================ */
 .admin-pagination {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     gap: 6px;
-    padding: 1rem 1.25rem;
-    border-top: 1px solid #e8e4d8;
-    font-size: 0.8rem;
+    padding: 0.9rem 1.25rem;
+    border-top: 1px solid var(--krem-tua);
+    background: var(--putih-gading);
+    font-family: var(--font-ui);
+    font-size: 0.78rem;
     color: var(--teks-muted);
+}
+
+/* ============================================================
+   OPERATOR ROLE BADGE di topbar
+   ============================================================ */
+.role-badge-operator {
+    background: rgba(45,80,22,0.1);
+    color: var(--hijau);
+    font-family: var(--font-ui);
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 999px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 1px solid rgba(45,80,22,0.2);
+}
+.role-badge-admin {
+    background: rgba(200,149,42,0.12);
+    color: #7a5c10;
+    font-family: var(--font-ui);
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 999px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 1px solid rgba(200,149,42,0.25);
+}
+
+/* ============================================================
+   MOTIF DIVIDER di dalam panel (opsional, sebagai aksen)
+   ============================================================ */
+.panel-divider {
+    height: 2px;
+    background: linear-gradient(90deg, var(--emas) 0%, var(--hijau) 100%);
+    opacity: 0.3;
+    border-radius: 999px;
+    margin: 1.25rem 0;
+}
+
+/* ============================================================
+   QUILL EDITOR (form berita) — sesuaikan border dengan tema
+   ============================================================ */
+.ql-toolbar.ql-snow {
+    border-color: var(--krem-tua) !important;
+    background: var(--putih-gading) !important;
+    border-top-left-radius: var(--radius);
+    border-top-right-radius: var(--radius);
+}
+.ql-container.ql-snow {
+    border-color: var(--krem-tua) !important;
+    border-bottom-left-radius: var(--radius);
+    border-bottom-right-radius: var(--radius);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+}
+.ql-container.ql-snow:focus-within {
+    border-color: var(--emas) !important;
+    box-shadow: 0 0 0 3px rgba(200,149,42,0.12);
+}
+.ql-snow .ql-stroke { stroke: var(--teks-2) !important; }
+.ql-snow .ql-fill   { fill:   var(--teks-2) !important; }
+.ql-snow.ql-toolbar button:hover .ql-stroke,
+.ql-snow.ql-toolbar button.ql-active .ql-stroke { stroke: var(--hijau) !important; }
+.ql-snow.ql-toolbar button:hover .ql-fill,
+.ql-snow.ql-toolbar button.ql-active .ql-fill   { fill:   var(--hijau) !important; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+    .admin-sidebar { width: 200px; }
+    .admin-main    { margin-left: 200px; }
+}
+
+@media (max-width: 768px) {
+    .admin-sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+    .admin-sidebar.open { transform: translateX(0); }
+    .admin-main { margin-left: 0; }
+    .admin-stat-grid { grid-template-columns: repeat(2, 1fr); }
 }

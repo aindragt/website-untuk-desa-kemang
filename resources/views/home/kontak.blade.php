@@ -29,9 +29,9 @@
 
                 @foreach ([
                     ['📍', 'Alamat', 'Jl. Raya Desa Kemang, Kec. Pangkalan Kuras,<br>Kab. Pelalawan, Riau'],
-                    ['📞', 'Telepon', '(0761) XXXXXX'],
-                    ['✉️',  'Email',   'desakemangriau@gmail.com'],
-                    ['💬', 'WhatsApp', '0812-XXXX-XXXX'],
+                    ['📞', 'Telepon', '+62 822-8575-3837'],
+                    ['✉️',  'Email',   'desakemang.pelalawan@gmail.com'],
+                    ['💬', 'WhatsApp', '+62 822-8575-3837'],
                 ] as $info)
                 <div class="kontak-info__item">
                     <div class="kontak-info__icon">{{ $info[0] }}</div>

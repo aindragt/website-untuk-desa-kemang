@@ -13,18 +13,22 @@
 
 <div class="admin-layout">
 
-    {{-- SIDEBAR OPERATOR --}}
-    <aside class="admin-sidebar">
+    {{-- ===== SIDEBAR OPERATOR ===== --}}
+    <aside class="admin-sidebar" id="operatorSidebar">
+
+        {{-- Brand --}}
         <div class="admin-sidebar__brand">
-            <div class="admin-sidebar__logo">DK</div>
+            <div class="admin-sidebar__logo" style="background:var(--hijau-muda);color:#fff">DK</div>
             <div>
                 <div class="admin-sidebar__title">Desa Kemang</div>
-                <div class="admin-sidebar__sub" style="color:var(--emas)">Operator Desa</div>
+                <div class="admin-sidebar__sub" style="color:rgba(200,149,42,0.7)">Operator Desa</div>
             </div>
         </div>
+        <div class="admin-sidebar__motif"></div>
 
+        {{-- Navigasi --}}
         <nav class="admin-nav">
-            <div class="admin-nav__section">Menu Utama</div>
+            <div class="admin-nav__section">Utama</div>
             <a href="{{ route('operator.dashboard') }}"
                class="admin-nav__link {{ request()->routeIs('operator.dashboard') ? 'active' : '' }}">
                 <span class="admin-nav__icon">🏠</span> Dashboard
@@ -46,7 +50,7 @@
                 <span class="admin-nav__icon">📝</span> Pengajuan Surat
                 @php $menunggu = \App\Models\PengajuanSurat::where('status','menunggu')->count(); @endphp
                 @if($menunggu > 0)
-                <span style="margin-left:auto;background:rgba(200,149,42,0.15);color:#8a6010;font-size:0.65rem;padding:1px 7px;border-radius:999px;font-weight:600">{{ $menunggu }}</span>
+                <span style="margin-left:auto;background:rgba(200,149,42,0.15);color:#7a5c10;font-size:0.62rem;padding:1px 7px;border-radius:999px;font-weight:600">{{ $menunggu }}</span>
                 @endif
             </a>
 
@@ -56,21 +60,22 @@
                 <span class="admin-nav__icon">✉️</span> Pesan Masuk
                 @php $pesanBaru = \App\Models\PesanKontak::where('is_read', false)->count(); @endphp
                 @if($pesanBaru > 0)
-                <span style="margin-left:auto;background:rgba(220,53,69,0.15);color:#b91c1c;font-size:0.65rem;padding:1px 7px;border-radius:999px;font-weight:600">{{ $pesanBaru }}</span>
+                <span style="margin-left:auto;background:rgba(220,53,69,0.12);color:#b91c1c;font-size:0.62rem;padding:1px 7px;border-radius:999px;font-weight:600">{{ $pesanBaru }}</span>
                 @endif
             </a>
         </nav>
 
-        {{-- Info role di sidebar bawah --}}
-        <div style="padding:0.75rem 1.25rem;background:rgba(200,149,42,0.08);border-top:1px solid rgba(255,255,255,0.06);margin-bottom:0">
-            <div style="font-family:var(--font-ui);font-size:0.68rem;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px">Login sebagai</div>
+        {{-- Info user --}}
+        <div style="padding:0.75rem 1.25rem;background:rgba(200,149,42,0.06);border-top:1px solid rgba(200,149,42,0.15)">
+            <div style="font-family:var(--font-ui);font-size:0.68rem;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px">Login sebagai</div>
             <div style="font-family:var(--font-ui);font-size:0.82rem;color:var(--emas);font-weight:500">{{ session('user_nama') }}</div>
-            <div style="font-family:var(--font-ui);font-size:0.7rem;color:rgba(255,255,255,0.35)">Operator Desa</div>
+            <div style="font-family:var(--font-ui);font-size:0.68rem;color:rgba(255,255,255,0.3)">Operator Desa</div>
         </div>
 
         <div class="admin-sidebar__footer">
             <a href="{{ route('home') }}" target="_blank"
-               style="display:flex;align-items:center;gap:8px;font-size:0.78rem;color:rgba(255,255,255,0.4);margin-bottom:0.75rem">
+               style="display:flex;align-items:center;gap:8px;font-size:0.78rem;color:rgba(255,255,255,0.4);margin-bottom:0.75rem;text-decoration:none"
+               onmouseover="this.style.color='var(--emas)'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">
                 <span>🌐</span> Lihat Website
             </a>
             <form action="{{ route('logout') }}" method="POST">
@@ -84,15 +89,14 @@
         </div>
     </aside>
 
-    {{-- MAIN --}}
+    {{-- ===== MAIN ===== --}}
     <div class="admin-main">
+
+        {{-- Topbar --}}
         <div class="admin-topbar">
             <div class="admin-topbar__title">@yield('page-title', 'Dashboard')</div>
             <div class="admin-topbar__user">
-                {{-- Badge role operator --}}
-                <span style="background:rgba(45,80,22,0.1);color:var(--hijau);font-family:var(--font-ui);font-size:0.68rem;font-weight:600;padding:2px 9px;border-radius:999px;letter-spacing:0.05em">
-                    OPERATOR
-                </span>
+                <span class="role-badge-operator">Operator</span>
                 <div class="admin-topbar__avatar" style="background:var(--hijau-muda)">
                     {{ strtoupper(substr(session('user_nama', 'O'), 0, 1)) }}
                 </div>
@@ -100,14 +104,17 @@
             </div>
         </div>
 
-        <div class="admin-content">
+        {{-- Flash messages --}}
+        <div style="padding:0 1.75rem">
             @if(session('success'))
-            <div class="alert alert--success" style="margin-bottom:1.25rem">✅ {{ session('success') }}</div>
+            <div class="alert alert--success" style="margin-top:1.25rem">✅ {{ session('success') }}</div>
             @endif
             @if(session('error'))
-            <div class="alert alert--error" style="margin-bottom:1.25rem">❌ {{ session('error') }}</div>
+            <div class="alert alert--error" style="margin-top:1.25rem">❌ {{ session('error') }}</div>
             @endif
+        </div>
 
+        <div class="admin-content">
             @yield('content')
         </div>
     </div>

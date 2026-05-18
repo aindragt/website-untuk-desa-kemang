@@ -20,7 +20,15 @@
     <nav class="navbar" id="navbar">
         <div class="container navbar__inner">
             <a href="{{ route('home') }}" class="navbar__brand" data-no-swup>
-                <div class="navbar__logo">DK</div>
+                {{-- <div class="navbar__logo">DK</div> --}}
+                    <div class="logo">
+                        @if(file_exists(public_path('logo/logo-pelalawan.png')))
+                            <img src="{{ asset('logo/logo-pelalawan.png') }}"
+                                width="33" height="33" style="object-fit:contain">
+                        @else
+                            <div class="kop-logo-teks">KAB.<br>PELA<br>LAWAN</div>
+                        @endif
+                    </div>
                 <div>
                     <div class="navbar__name">Desa Kemang</div>
                     <div class="navbar__sub">Kab. Pelalawan · Riau</div>
@@ -53,12 +61,20 @@
         <div class="container footer__inner">
             <div class="footer__grid">
                 <div class="footer__col footer__col--brand">
-                    <div class="footer__logo">DK</div>
+                    {{-- <div class="footer__logo">DK</div> --}}
+                    <div class="logo">
+                        @if(file_exists(public_path('logo/logo-pelalawan.png')))
+                            <img src="{{ asset('logo/logo-pelalawan.png') }}"
+                                width="33" height="33" style="object-fit:contain">
+                        @else
+                            <div class="kop-logo-teks">KAB.<br>PELA<br>LAWAN</div>
+                        @endif
+                    </div>
                     <h3 class="footer__desa">Desa Kemang</h3>
                     <p class="footer__alamat">Kecamatan Pangkalan Kuras<br>Kabupaten Pelalawan, Riau</p>
                     <p class="footer__alamat" style="margin-top:0.5rem">
-                        📞 (0761) XXXXXX<br>
-                        ✉ desakemangriau@gmail.com
+                        📞 +62 822-8575-3837<br>
+                        ✉ desakemang.pelalawan@gmail.com
                     </p>
                 </div>
                 <div class="footer__col">

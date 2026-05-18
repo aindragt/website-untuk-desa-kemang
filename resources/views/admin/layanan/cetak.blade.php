@@ -275,10 +275,10 @@
             <div class="kop">
                 <div class="kop-inner">
                     {{-- Logo Kiri: Kabupaten Pelalawan --}}
-                    <div class="kop-logo">
-                        @if(file_exists(public_path('images/logo-pelalawan.png')))
-                            <img src="{{ public_path('images/logo-pelalawan.png') }}"
-                                 width="58" height="58" style="border-radius:50%;object-fit:contain">
+                    <div class="logo">
+                        @if(file_exists(public_path('logo/logo-pelalawan.png')))
+                            <img src="{{ asset('logo/logo-pelalawan.png') }}"
+                                 width="88" height="88" style="object-fit:contain">
                         @else
                             <div class="kop-logo-teks">KAB.<br>PELA<br>LAWAN</div>
                         @endif
@@ -292,15 +292,15 @@
                         <div class="t-desa">DESA KEMANG</div>
                         <div class="t-alamat">
                             Jl. Raya Desa Kemang, Kec. Pangkalan Kuras, Kab. Pelalawan, Riau
-                            &nbsp;|&nbsp; Telp. (0761) XXXXXX
+                            &nbsp;|&nbsp; Telp. +62 822-8575-3837
                         </div>
                     </div>
 
                     {{-- Logo Kanan: Desa Kemang --}}
-                    <div class="kop-logo">
-                        @if(file_exists(public_path('images/logo-desa.png')))
-                            <img src="{{ public_path('images/logo-desa.png') }}"
-                                 width="58" height="58" style="border-radius:50%;object-fit:contain">
+                    <div class="logo">
+                        @if(file_exists(public_path('logo/logo-pelalawan.png')))
+                            <img src="{{ asset('logo/logo-pelalawan.png') }}"
+                                 width="88" height="88" style="object-fit:contain">
                         @else
                             <div class="kop-logo-teks">DESA<br>KE<br>MANG</div>
                         @endif
@@ -419,7 +419,7 @@
                     <p class="ttd-kota">Kemang, {{ now()->translatedFormat('d F Y') }}</p>
                     <p class="ttd-jabatan">Kepala Desa Kemang,</p>
                     <div class="ttd-ruang">
-                        <div class="ttd-stempel">Cap<br>Desa</div>
+                        <div class="stempel"></div>
                     </div>
                     <p class="ttd-garis">( _________________________ )</p>
                     <p class="ttd-nama">Kepala Desa Kemang</p>
