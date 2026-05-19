@@ -27,10 +27,17 @@ Buat kunci pengaman enkripsi untuk aplikasi Laravel Anda:
 php artisan key:generate
 
 ### 5. Migrasi Database
-Pastikan Anda sudah membuat database kosong di phpMyAdmin/MySQL dengan nama yang sama seperti di file .env, kemudian jalankan perintah ini untuk membuat tabel otomatis:
-php artisan migrate
+Pastikan Anda sudah membuat database kosong di phpMyAdmin/MySQL dengan nama yang sama seperti di file .env,
+Untuk membuat tabel sekaligus mengisi data dummy (seeder) yang sudah disediakan, jalankan perintah berikut:
+php artisan migrate --seed
 
-### 6. Jalankan Aplikasi
+> **💡Info Tambahan:** ika di kemudian hari Anda ingin mengosongkan database dan mengisinya ulang dari awal, Anda bisa menggunakan perintah php artisan migrate:fresh --seed
+
+### 6. Link Storage
+jalankan perintah ini agar file yang diunggah bisa diakses oleh publik: 
+php artisan storage:link
+
+### 7. Jalankan Aplikasi
 Server lokal Anda siap dijalankan dengan perintah:
 php artisan serve
 
