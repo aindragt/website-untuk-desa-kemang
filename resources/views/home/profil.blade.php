@@ -185,7 +185,7 @@
             <h2 class="section-title" style="margin-bottom:2rem">Aparatur Desa Kemang</h2>
             <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.25rem">
                 @foreach ([
-                    ['Kepala Desa',         '——————',  'Pimpinan pemerintahan desa.'],
+                    ['Kepala Desa',         'Lukman Hakim',  'Pimpinan pemerintahan desa.'],
                     ['Sekretaris Desa',     '——————',  'Membantu kepala desa dalam administrasi.'],
                     ['Kaur Keuangan',       '——————',  'Mengelola keuangan dan aset desa.'],
                     ['Kaur Umum',           '——————',  'Urusan umum dan tata usaha desa.'],

@@ -422,7 +422,7 @@
                         <div class="stempel"></div>
                     </div>
                     <p class="ttd-garis">( _________________________ )</p>
-                    <p class="ttd-nama">Kepala Desa Kemang</p>
+                    <p class="ttd-nama">Lukman Hakim</p>
                 </div>
             </div>
 
