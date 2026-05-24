@@ -19,11 +19,5 @@ class Statistik extends Model
         return $query->where('kategori', $kategori)->orderBy('urutan');
     }
 
-    // Menghitung persentase nilai terhadap total kategori yang sama
-    public function getPresentaseAttribute(): float
-    {
-        $total = static::where('kategori', $this->kategori)->sum('nilai');
-        if ($total == 0) return 0;
-        return round(($this->nilai / $total) * 100, 1);
-    }
+
 }

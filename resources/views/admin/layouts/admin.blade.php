@@ -43,10 +43,7 @@
                 <span style="margin-left:auto;background:rgba(200,149,42,0.15);color:#7a5c10;font-size:0.62rem;padding:1px 7px;border-radius:999px;font-weight:600">{{ $jmlBerita }}</span>
                 @endif
             </a>
-            <a href="{{ route('admin.galeri.index') }}"
-               class="admin-nav__link {{ request()->routeIs('admin.galeri.*') ? 'active' : '' }}">
-                <span class="admin-nav__icon">🖼️</span> Galeri Foto
-            </a>
+
 
             <div class="admin-nav__section">Data Desa</div>
             <a href="{{ route('admin.statistik.index') }}"
@@ -84,7 +81,7 @@
         {{-- Info user & logout --}}
         <div style="padding:0.75rem 1.25rem;background:rgba(200,149,42,0.06);border-top:1px solid rgba(200,149,42,0.15)">
             <div style="font-family:var(--font-ui);font-size:0.68rem;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px">Login sebagai</div>
-            <div style="font-family:var(--font-ui);font-size:0.82rem;color:var(--emas);font-weight:500">{{ session('user_nama', 'Administrator') }}</div>
+            <div style="font-family:var(--font-ui);font-size:0.82rem;color:var(--emas);font-weight:500">{{ Auth::check() ? Auth::user()->nama : 'Administrator' }}</div>
             <div style="font-family:var(--font-ui);font-size:0.68rem;color:rgba(255,255,255,0.3)">Administrator</div>
         </div>
 
@@ -124,9 +121,9 @@
             <div class="admin-topbar__user">
                 <span class="role-badge-admin">Admin</span>
                 <div class="admin-topbar__avatar">
-                    {{ strtoupper(substr(session('user_nama', 'A'), 0, 1)) }}
+                    {{ strtoupper(substr(Auth::check() ? Auth::user()->nama : 'A', 0, 1)) }}
                 </div>
-                <span style="font-size:0.82rem;color:var(--teks-2)">{{ session('user_nama', 'Administrator') }}</span>
+                <span style="font-size:0.82rem;color:var(--teks-2)">{{ Auth::check() ? Auth::user()->nama : 'Administrator' }}</span>
             </div>
         </div>
 

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Berita;
-use App\Models\Galeri;
 use App\Models\Statistik;
 use App\Models\PesanKontak;
 use Illuminate\Http\Request;
@@ -13,7 +12,6 @@ class HomeController extends Controller
     public function index()
     {
         $beritaTerbaru = Berita::published()->limit(3)->get();
-        $galeriUtama   = Galeri::active()->limit(6)->get();
         $statistikRingkas = [
             'total_penduduk' => Statistik::where('kategori', 'penduduk')->where('label', 'Total Penduduk')->value('nilai') ?? 2847,
             'jumlah_kk'      => Statistik::where('kategori', 'penduduk')->where('label', 'Kepala Keluarga')->value('nilai') ?? 742,
@@ -21,7 +19,7 @@ class HomeController extends Controller
             'jumlah_dusun'   => 3,
         ];
 
-        return view('home.index', compact('beritaTerbaru', 'galeriUtama', 'statistikRingkas'));
+        return view('home.index', compact('beritaTerbaru', 'statistikRingkas'));
     }
 
     public function profil()

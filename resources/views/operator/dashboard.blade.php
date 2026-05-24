@@ -14,7 +14,7 @@ resources/views/operator/dashboard.blade.php
     <div style="font-size:1.75rem">🖊️</div>
     <div>
         <div style="font-family:var(--font-display);font-size:0.95rem;color:#fff;margin-bottom:2px">
-            Selamat datang, {{ session('user_nama') }}!
+            Selamat datang, {{ Auth::user()->nama }}!
         </div>
         <div style="font-family:var(--font-ui);font-size:0.78rem;color:rgba(255,255,255,0.65)">
             Anda login sebagai <strong style="color:var(--emas)">Operator Desa</strong>.

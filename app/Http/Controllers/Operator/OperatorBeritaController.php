@@ -38,12 +38,8 @@ class OperatorBeritaController extends Controller
             'ringkasan'    => 'nullable|string|max:500',
             'isi'          => 'required|string',
             'is_published' => 'boolean',
-            'foto'         => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'fotos.*'      => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
-
-        if ($request->hasFile('foto')) {
-            $data['foto'] = $request->file('foto')->store('berita', 'public');
-        }
 
         $slug = Str::slug($data['judul']);
         $i = 1;
@@ -52,11 +48,22 @@ class OperatorBeritaController extends Controller
             $slug = $orig . '-' . $i++;
         }
         $data['slug']         = $slug;
-        $data['penulis']      = session('user_nama'); // nama operator sebagai penulis
+        $data['penulis']      = \Illuminate\Support\Facades\Auth::user()->nama; // nama operator sebagai penulis
         $data['is_published'] = $request->boolean('is_published');
         $data['published_at'] = $data['is_published'] ? now() : null;
+        $data['isi']          = clean($data['isi']);
 
-        Berita::create($data);
+        $berita = Berita::create($data);
+
+        // Upload foto multiple jika ada
+        if ($request->hasFile('fotos')) {
+            foreach ($request->file('fotos') as $index => $foto) {
+                $berita->images()->create([
+                    'foto' => $foto->store('berita', 'public'),
+                    'is_utama' => $index === 0,
+                ]);
+            }
+        }
 
         return redirect()->route('operator.berita.index')
             ->with('success', 'Berita berhasil ditambahkan.');
@@ -77,13 +84,10 @@ class OperatorBeritaController extends Controller
             'isi'          => 'required|string',
             'penulis'      => 'required|string|max:100',
             'is_published' => 'boolean',
-            'foto'         => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'fotos.*'      => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'delete_fotos' => 'nullable|array',
+            'utama_foto'   => 'nullable|integer',
         ]);
-
-        if ($request->hasFile('foto')) {
-            if ($berita->foto) \Storage::disk('public')->delete($berita->foto);
-            $data['foto'] = $request->file('foto')->store('berita', 'public');
-        }
 
         if ($data['judul'] !== $berita->judul) {
             $slug = Str::slug($data['judul']);
@@ -99,7 +103,39 @@ class OperatorBeritaController extends Controller
             $data['published_at'] = now();
         }
 
+        $data['isi'] = clean($data['isi']);
         $berita->update($data);
+
+        // Hapus foto jika ada yang dicentang
+        if (!empty($data['delete_fotos'])) {
+            $imagesToDelete = $berita->images()->whereIn('id', $data['delete_fotos'])->get();
+            foreach ($imagesToDelete as $img) {
+                \Storage::disk('public')->delete($img->foto);
+                $img->delete();
+            }
+        }
+
+        // Tambah foto baru
+        if ($request->hasFile('fotos')) {
+            $hasUtama = $berita->images()->where('is_utama', true)->exists();
+            foreach ($request->file('fotos') as $index => $foto) {
+                $berita->images()->create([
+                    'foto' => $foto->store('berita', 'public'),
+                    'is_utama' => !$hasUtama && $index === 0,
+                ]);
+            }
+        }
+
+        // Set foto utama
+        if (!empty($data['utama_foto'])) {
+            $berita->images()->update(['is_utama' => false]);
+            $berita->images()->where('id', $data['utama_foto'])->update(['is_utama' => true]);
+        } else {
+            // Pastikan ada satu yang utama jika belum ada
+            if ($berita->images()->count() > 0 && !$berita->images()->where('is_utama', true)->exists()) {
+                $berita->images()->first()->update(['is_utama' => true]);
+            }
+        }
 
         return redirect()->route('operator.berita.index')
             ->with('success', 'Berita berhasil diperbarui.');

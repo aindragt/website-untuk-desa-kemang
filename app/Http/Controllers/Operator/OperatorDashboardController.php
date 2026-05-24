@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Berita;
 use App\Models\PengajuanSurat;
 use App\Models\PesanKontak;
-use App\Models\Galeri;
 
 class OperatorDashboardController extends Controller
 {

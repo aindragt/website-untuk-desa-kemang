@@ -45,12 +45,11 @@ class PengajuanSurat extends Model
             default          => 'SKT',
         };
 
-        $tahun  = date('Y');
-        $urutan = static::whereYear('created_at', $tahun)
-                        ->where('jenis_surat', $jenisSurat)
-                        ->count() + 1;
+        do {
+            $nomor = $prefix . '-' . date('Y') . '-' . strtoupper(\Illuminate\Support\Str::random(5));
+        } while (static::where('nomor_referensi', $nomor)->exists());
 
-        return $prefix . '-' . $tahun . '-' . str_pad($urutan, 5, '0', STR_PAD_LEFT);
+        return $nomor;
     }
 
     // -------------------------------------------------------

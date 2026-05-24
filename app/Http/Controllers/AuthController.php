@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
     public function showLogin()
     {
-        // Jika sudah login, redirect ke dashboard sesuai role
-        if (session('user_id')) {
-            return $this->redirectByRole(session('user_role'));
+        if (Auth::check()) {
+            return $this->redirectByRole(Auth::user()->role);
         }
 
         return view('auth.login');
@@ -19,7 +18,7 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $request->validate([
+        $credentials = $request->validate([
             'username' => 'required|string',
             'password' => 'required|string',
         ], [
@@ -27,33 +26,26 @@ class AuthController extends Controller
             'password.required' => 'Password wajib diisi.',
         ]);
 
-        $user = User::where('username', $request->username)
-                    ->where('is_active', true)
-                    ->first();
-
-        if (!$user || !$user->checkPassword($request->password)) {
-            return back()
-                ->with('error', 'Username atau password salah.')
-                ->withInput(['username' => $request->username]);
+        if (Auth::attempt(['username' => $credentials['username'], 'password' => $credentials['password'], 'is_active' => true])) {
+            $request->session()->regenerate();
+            
+            Auth::user()->update(['last_login_at' => now()]);
+            
+            return $this->redirectByRole(Auth::user()->role);
         }
 
-        // Simpan info user ke session
-        session([
-            'user_id'       => $user->id,
-            'user_nama'     => $user->nama,
-            'user_username' => $user->username,
-            'user_role'     => $user->role,
-        ]);
-
-        // Update last login
-        $user->update(['last_login_at' => now()]);
-
-        return $this->redirectByRole($user->role);
+        return back()
+            ->with('error', 'Username atau password salah, atau akun dinonaktifkan.')
+            ->withInput(['username' => $request->username]);
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        session()->forget(['user_id', 'user_nama', 'user_username', 'user_role']);
+        Auth::logout();
+        
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
         return redirect()->route('login')
             ->with('success', 'Anda berhasil logout.');
     }

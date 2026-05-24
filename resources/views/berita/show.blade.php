@@ -31,7 +31,7 @@
 
             {{-- KONTEN UTAMA --}}
             <div>
-                @if($berita->foto)
+                @if($berita->images->count() > 0 || $berita->foto)
                 <img src="{{ $berita->foto_url }}" alt="{{ $berita->judul }}"
                      style="width:100%;border-radius:var(--radius-lg);margin-bottom:2rem;aspect-ratio:16/9;object-fit:cover">
                 @endif
@@ -39,6 +39,20 @@
                 <div class="berita-single__content">
                     {!! $berita->isi !!}
                 </div>
+
+                {{-- GALERI TAMBAHAN --}}
+                @if($berita->images->where('is_utama', false)->count() > 0)
+                <div style="margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border)">
+                    <p style="font-family:var(--font-ui);font-size:0.9rem;font-weight:600;color:var(--teks);margin-bottom:1rem">Galeri Foto Tambahan:</p>
+                    <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(120px, 1fr));gap:1rem">
+                        @foreach($berita->images->where('is_utama', false) as $img)
+                        <a href="{{ $img->foto_url }}" class="glightbox" data-gallery="berita-gallery">
+                            <img src="{{ $img->foto_url }}" style="width:100%;height:100px;object-fit:cover;border-radius:var(--radius);transition:transform 0.2s" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                        </a>
+                        @endforeach
+                    </div>
+                </div>
+                @endif
 
                 {{-- BAGIKAN --}}
                 <div style="margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border)">

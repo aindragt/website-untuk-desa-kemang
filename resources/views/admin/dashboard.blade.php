@@ -9,7 +9,7 @@
     <div style="font-size:1.75rem">👑</div>
     <div>
         <div style="font-family:var(--font-display);font-size:0.95rem;color:#fff;margin-bottom:2px">
-            Selamat datang, {{ session('user_nama') }}!
+            Selamat datang, {{ Auth::user()->nama }}!
         </div>
         <div style="font-family:var(--font-ui);font-size:0.78rem;color:rgba(255,255,255,0.65)">
             Anda login sebagai <strong style="color:var(--emas)">Admin Desa</strong>.
@@ -31,13 +31,6 @@
         <div>
             <div class="admin-stat-card__num">{{ $stats['berita_tayang'] }}</div>
             <div class="admin-stat-card__lbl">Berita Tayang</div>
-        </div>
-    </div>
-    <div class="admin-stat-card">
-        <div class="admin-stat-card__icon admin-stat-card__icon--coklat">🖼️</div>
-        <div>
-            <div class="admin-stat-card__num">{{ $stats['total_galeri'] }}</div>
-            <div class="admin-stat-card__lbl">Foto Galeri</div>
         </div>
     </div>
     <div class="admin-stat-card">

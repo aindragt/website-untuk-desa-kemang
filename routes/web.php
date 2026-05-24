@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BeritaController;
-use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\AuthController;
 
@@ -13,7 +12,6 @@ use App\Http\Controllers\AuthController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/profil', [HomeController::class, 'profil'])->name('profil');
 Route::get('/statistik', [HomeController::class, 'statistik'])->name('statistik');
-Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri');
 Route::get('/berita', [BeritaController::class, 'index'])->name('berita.index');
 Route::get('/berita/{slug}', [BeritaController::class, 'show'])->name('berita.show');
 Route::get('/kontak', [HomeController::class, 'kontak'])->name('kontak');
@@ -38,7 +36,6 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // ============================================================
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminBeritaController;
-use App\Http\Controllers\Admin\AdminGaleriController;
 use App\Http\Controllers\Admin\AdminPesanController;
 use App\Http\Controllers\Admin\AdminStatistikController;
 use App\Http\Controllers\Admin\AdminLayananController;
@@ -57,11 +54,6 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
     Route::delete('/berita/{berita}',       [AdminBeritaController::class, 'destroy'])->name('berita.destroy');
     Route::patch('/berita/{berita}/toggle', [AdminBeritaController::class, 'togglePublish'])->name('berita.toggle');
 
-    // Galeri
-    Route::get('/galeri',                   [AdminGaleriController::class, 'index'])->name('galeri.index');
-    Route::post('/galeri',                  [AdminGaleriController::class, 'store'])->name('galeri.store');
-    Route::delete('/galeri/{galeri}',       [AdminGaleriController::class, 'destroy'])->name('galeri.destroy');
-    Route::patch('/galeri/{galeri}/toggle', [AdminGaleriController::class, 'toggleActive'])->name('galeri.toggle');
 
     // Statistik
     Route::get('/statistik',                    [AdminStatistikController::class, 'index'])->name('statistik.index');
@@ -94,7 +86,6 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
 // ============================================================
 use App\Http\Controllers\Operator\OperatorDashboardController;
 use App\Http\Controllers\Operator\OperatorBeritaController;
-use App\Http\Controllers\Operator\OperatorGaleriController;
 use App\Http\Controllers\Operator\OperatorLayananController;
 use App\Http\Controllers\Operator\OperatorPesanController;
 
@@ -110,9 +101,6 @@ Route::prefix('operator')->name('operator.')->middleware('auth.user')->group(fun
     Route::put('/berita/{berita}',          [OperatorBeritaController::class, 'update'])->name('berita.update');
     Route::patch('/berita/{berita}/toggle', [OperatorBeritaController::class, 'togglePublish'])->name('berita.toggle');
 
-    // Galeri (tanpa delete)
-    Route::get('/galeri',   [OperatorGaleriController::class, 'index'])->name('galeri.index');
-    Route::post('/galeri',  [OperatorGaleriController::class, 'store'])->name('galeri.store');
 
     // Layanan Surat (tanpa delete)
     Route::get('/layanan',                      [OperatorLayananController::class, 'index'])->name('layanan.index');
