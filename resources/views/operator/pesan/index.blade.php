@@ -37,11 +37,11 @@
                 </td>
                 <td style="white-space:nowrap">
                     <a href="{{ route('operator.pesan.show', $p) }}" class="btn-sm btn-sm--view">📖 Baca</a>
-                    {{-- <form action="{{ route('operator.pesan.destroy', $p) }}" method="POST" style="display:inline">
+                    <form action="{{ route('operator.pesan.destroy', $p) }}" method="POST" style="display:inline">
                         @csrf @method('DELETE')
                         <button type="submit" class="btn-sm btn-sm--hapus"
                                 onclick="return confirm('Hapus pesan ini?')">🗑️</button>
-                    </form> --}}
+                    </form>
                 </td>
             </tr>
             @empty

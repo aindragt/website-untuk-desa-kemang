@@ -40,6 +40,12 @@
                 <span class="admin-nav__icon">📰</span> Berita
             </a>
 
+            <div class="admin-nav__section">Data Desa</div>
+            <a href="{{ route('operator.statistik.index') }}"
+               class="admin-nav__link {{ request()->routeIs('operator.statistik.*') ? 'active' : '' }}">
+                <span class="admin-nav__icon">📊</span> Statistik
+            </a>
+
 
             <div class="admin-nav__section">Layanan</div>
             <a href="{{ route('operator.layanan.index') }}"

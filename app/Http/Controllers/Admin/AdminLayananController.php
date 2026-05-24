@@ -34,10 +34,11 @@ class AdminLayananController extends Controller
         $daftarJenis = PengajuanSurat::daftarJenis();
 
         $ringkasan = [
-            'menunggu' => PengajuanSurat::where('status', 'menunggu')->count(),
-            'diproses' => PengajuanSurat::where('status', 'diproses')->count(),
-            'selesai'  => PengajuanSurat::where('status', 'selesai')->count(),
-            'ditolak'  => PengajuanSurat::where('status', 'ditolak')->count(),
+            'menunggu'                => PengajuanSurat::where('status', 'menunggu')->count(),
+            'diproses_operator'       => PengajuanSurat::where('status', 'diproses_operator')->count(),
+            'menunggu_validasi_kades' => PengajuanSurat::where('status', 'menunggu_validasi_kades')->count(),
+            'disetujui'               => PengajuanSurat::where('status', 'disetujui')->count(),
+            'ditolak'                 => PengajuanSurat::where('status', 'ditolak')->count(),
         ];
 
         return view('admin.layanan.index', compact('pengajuan', 'daftarJenis', 'status', 'jenis', 'cari', 'ringkasan'));
@@ -51,7 +52,7 @@ class AdminLayananController extends Controller
     public function updateStatus(Request $request, PengajuanSurat $layanan)
     {
         $request->validate([
-            'status'         => 'required|in:menunggu,diproses,selesai,ditolak',
+            'status'         => 'required|in:menunggu,diproses_operator,menunggu_validasi_kades,disetujui,ditolak',
             'catatan_admin'  => 'nullable|string|max:500',
         ]);
 
@@ -61,10 +62,10 @@ class AdminLayananController extends Controller
         ];
 
         // Set timestamp otomatis
-        if ($request->status === 'diproses' && !$layanan->diproses_at) {
+        if ($request->status === 'diproses_operator' && !$layanan->diproses_at) {
             $data['diproses_at'] = now();
         }
-        if ($request->status === 'selesai' && !$layanan->selesai_at) {
+        if ($request->status === 'disetujui' && !$layanan->selesai_at) {
             $data['selesai_at'] = now();
         }
 

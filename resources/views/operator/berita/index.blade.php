@@ -66,11 +66,11 @@
                         </button>
                     </form>
 
-                    {{-- <form action="{{ route('operator.berita.destroy', $b) }}" method="POST" style="display:inline">
+                    <form action="{{ route('operator.berita.destroy', $b) }}" method="POST" style="display:inline">
                         @csrf @method('DELETE')
                         <button type="submit" class="btn-sm btn-sm--hapus"
                                 onclick="return confirm('Hapus berita ini permanen?')">🗑️ Hapus</button>
-                    </form> --}}
+                    </form>
                 </td>
             </tr>
             @empty

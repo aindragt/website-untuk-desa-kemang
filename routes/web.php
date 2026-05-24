@@ -82,33 +82,42 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
 });
 
 // ============================================================
-// OPERATOR — role 'operator' (akses terbatas)
+// OPERATOR — role 'operator' (akses penuh setara admin)
 // ============================================================
 use App\Http\Controllers\Operator\OperatorDashboardController;
 use App\Http\Controllers\Operator\OperatorBeritaController;
 use App\Http\Controllers\Operator\OperatorLayananController;
 use App\Http\Controllers\Operator\OperatorPesanController;
+use App\Http\Controllers\Operator\OperatorStatistikController;
 
 Route::prefix('operator')->name('operator.')->middleware('auth.user')->group(function () {
 
     Route::get('/dashboard', [OperatorDashboardController::class, 'index'])->name('dashboard');
 
-    // Berita (tanpa delete)
+    // Berita
     Route::get('/berita',                   [OperatorBeritaController::class, 'index'])->name('berita.index');
     Route::get('/berita/buat',              [OperatorBeritaController::class, 'create'])->name('berita.create');
     Route::post('/berita',                  [OperatorBeritaController::class, 'store'])->name('berita.store');
     Route::get('/berita/{berita}/edit',     [OperatorBeritaController::class, 'edit'])->name('berita.edit');
     Route::put('/berita/{berita}',          [OperatorBeritaController::class, 'update'])->name('berita.update');
+    Route::delete('/berita/{berita}',       [OperatorBeritaController::class, 'destroy'])->name('berita.destroy');
     Route::patch('/berita/{berita}/toggle', [OperatorBeritaController::class, 'togglePublish'])->name('berita.toggle');
 
+    // Statistik
+    Route::get('/statistik',                    [OperatorStatistikController::class, 'index'])->name('statistik.index');
+    Route::put('/statistik',                    [OperatorStatistikController::class, 'update'])->name('statistik.update');
+    Route::post('/statistik',                   [OperatorStatistikController::class, 'store'])->name('statistik.store');
+    Route::delete('/statistik/{statistik}',     [OperatorStatistikController::class, 'destroy'])->name('statistik.destroy');
 
-    // Layanan Surat (tanpa delete)
+    // Layanan Surat
     Route::get('/layanan',                      [OperatorLayananController::class, 'index'])->name('layanan.index');
     Route::get('/layanan/{layanan}/cetak',      [OperatorLayananController::class, 'cetak'])->name('layanan.cetak');
     Route::get('/layanan/{layanan}',            [OperatorLayananController::class, 'show'])->name('layanan.show');
     Route::patch('/layanan/{layanan}/status',   [OperatorLayananController::class, 'updateStatus'])->name('layanan.status');
+    Route::delete('/layanan/{layanan}',         [OperatorLayananController::class, 'destroy'])->name('layanan.destroy');
 
-    // Pesan (hanya baca, tanpa delete)
-    Route::get('/pesan',         [OperatorPesanController::class, 'index'])->name('pesan.index');
-    Route::get('/pesan/{pesan}', [OperatorPesanController::class, 'show'])->name('pesan.show');
+    // Pesan
+    Route::get('/pesan',            [OperatorPesanController::class, 'index'])->name('pesan.index');
+    Route::get('/pesan/{pesan}',    [OperatorPesanController::class, 'show'])->name('pesan.show');
+    Route::delete('/pesan/{pesan}', [OperatorPesanController::class, 'destroy'])->name('pesan.destroy');
 });

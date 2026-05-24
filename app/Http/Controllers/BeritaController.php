@@ -12,7 +12,7 @@ class BeritaController extends Controller
         $kategori = $request->get('kategori');
         $cari     = $request->get('cari');
 
-        $query = Berita::published();
+        $query = Berita::published()->with('images');
 
         if ($kategori && $kategori !== 'semua') {
             $query->where('kategori', $kategori);
@@ -33,8 +33,9 @@ class BeritaController extends Controller
 
     public function show(string $slug)
     {
-        $berita   = Berita::published()->where('slug', $slug)->firstOrFail();
+        $berita   = Berita::published()->with('images')->where('slug', $slug)->firstOrFail();
         $lainnya  = Berita::published()
+                        ->with('images')
                         ->where('id', '!=', $berita->id)
                         ->limit(4)
                         ->get();

@@ -153,5 +153,17 @@ class OperatorBeritaController extends Controller
         return back()->with('success', "Berita berhasil {$status}.");
     }
 
-    // Operator TIDAK bisa hapus — tidak ada method destroy()
+    public function destroy(Berita $berita)
+    {
+        foreach ($berita->images as $img) {
+            \Storage::disk('public')->delete($img->foto);
+        }
+        if ($berita->foto) {
+            \Storage::disk('public')->delete($berita->foto);
+        }
+        $berita->delete();
+
+        return redirect()->route('operator.berita.index')
+            ->with('success', 'Berita berhasil dihapus.');
+    }
 }

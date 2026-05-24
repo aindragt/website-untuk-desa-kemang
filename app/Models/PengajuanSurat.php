@@ -86,22 +86,24 @@ class PengajuanSurat extends Model
     public function getLabelStatusAttribute(): string
     {
         return match ($this->status) {
-            'menunggu'  => 'Menunggu',
-            'diproses'  => 'Diproses',
-            'selesai'   => 'Selesai',
-            'ditolak'   => 'Ditolak',
-            default     => ucfirst($this->status),
+            'menunggu'                => 'Menunggu',
+            'diproses_operator'       => 'Diproses Operator',
+            'menunggu_validasi_kades' => 'Menunggu Validasi Kades',
+            'disetujui'               => 'Disetujui',
+            'ditolak'                 => 'Ditolak',
+            default                   => ucfirst(str_replace('_', ' ', $this->status)),
         };
     }
 
     public function getBadgeStatusAttribute(): string
     {
         return match ($this->status) {
-            'menunggu' => 'badge--emas',
-            'diproses' => 'badge--hijau',
-            'selesai'  => 'badge--hijau',
-            'ditolak'  => 'badge--merah',
-            default    => 'badge--abu',
+            'menunggu'                => 'badge--emas',
+            'diproses_operator'       => 'badge--biru',
+            'menunggu_validasi_kades' => 'badge--ungu',
+            'disetujui'               => 'badge--hijau',
+            'ditolak'                 => 'badge--merah',
+            default                   => 'badge--abu',
         };
     }
 

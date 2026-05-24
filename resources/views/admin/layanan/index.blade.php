@@ -8,15 +8,16 @@
 <div class="admin-stat-grid" style="margin-bottom:1.5rem">
     @foreach([
         ['menunggu', '⏳', 'Menunggu',  'admin-stat-card__icon--emas'],
-        ['diproses', '🔄', 'Diproses',  'admin-stat-card__icon--hijau'],
-        ['selesai',  '✅', 'Selesai',   'admin-stat-card__icon--hijau'],
+        ['diproses_operator', '🔄', 'Diproses',  'admin-stat-card__icon--hijau'],
+        ['menunggu_validasi_kades', '⏱️', 'Validasi Kades', 'admin-stat-card__icon--emas'],
+        ['disetujui',  '✅', 'Disetujui',   'admin-stat-card__icon--hijau'],
         ['ditolak',  '❌', 'Ditolak',   'admin-stat-card__icon--merah'],
     ] as [$st, $ikon, $label, $cls])
     <a href="{{ route('admin.layanan.index', ['status' => $st]) }}"
        style="text-decoration:none" class="admin-stat-card">
         <div class="admin-stat-card__icon {{ $cls }}">{{ $ikon }}</div>
         <div>
-            <div class="admin-stat-card__num">{{ $ringkasan[$st] }}</div>
+            <div class="admin-stat-card__num">{{ $ringkasan[$st] ?? 0 }}</div>
             <div class="admin-stat-card__lbl">{{ $label }}</div>
         </div>
     </a>
@@ -38,7 +39,7 @@
                 </select>
                 <select name="status" class="form-control" style="width:130px;padding:0.4rem 0.75rem">
                     <option value="">Semua Status</option>
-                    @foreach(['menunggu'=>'Menunggu','diproses'=>'Diproses','selesai'=>'Selesai','ditolak'=>'Ditolak'] as $k=>$v)
+                    @foreach(['menunggu'=>'⏳ Menunggu','diproses_operator'=>'🔄 Diproses','menunggu_validasi_kades'=>'⏱️ Validasi Kades','disetujui'=>'✅ Disetujui','ditolak'=>'❌ Ditolak'] as $k=>$v)
                     <option value="{{ $k }}" {{ $status === $k ? 'selected' : '' }}>{{ $v }}</option>
                     @endforeach
                 </select>
@@ -84,7 +85,9 @@
                 </td>
                 <td style="white-space:nowrap">
                     <a href="{{ route('admin.layanan.show', $p) }}" class="btn-sm btn-sm--view">👁️ Detail</a>
+                    @if($p->status === 'disetujui')
                     <a href="{{ route('admin.layanan.cetak', $p) }}" target="_blank" class="btn-sm btn-sm--edit">🖨️ Cetak</a>
+                    @endif
                     <form action="{{ route('admin.layanan.destroy', $p) }}" method="POST" style="display:inline">
                         @csrf @method('DELETE')
                         <button type="submit" class="btn-sm btn-sm--hapus"

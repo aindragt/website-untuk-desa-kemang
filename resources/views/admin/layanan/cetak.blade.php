@@ -169,24 +169,29 @@
         .ttd-box .ttd-kota    { font-size: 11.5pt; margin-bottom: 4px; }
         .ttd-box .ttd-jabatan { font-size: 11.5pt; }
         .ttd-ruang {
-            height: 76px;
+            height: 90px;
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .ttd-stempel {
-            width: 72px;
-            height: 72px;
-            border: 1.5px dashed #bbb;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 7.5pt;
-            color: #bbb;
-            font-family: Arial, Helvetica, sans-serif;
-            text-align: center;
-            line-height: 1.3;
+        .stempel-image {
+            position: absolute;
+            width: 95px;
+            height: 95px;
+            object-fit: contain;
+            opacity: 0.85;
+            left: 30px;
+            top: -2px;
+            z-index: 2;
+        }
+        .ttd-image {
+            position: absolute;
+            width: 130px;
+            height: 75px;
+            object-fit: contain;
+            z-index: 1;
+            top: 8px;
         }
         .ttd-box .ttd-garis { font-size: 12pt; margin-top: 4px; }
         .ttd-box .ttd-nama  { font-size: 11.5pt; font-weight: bold; text-decoration: underline; }
@@ -261,7 +266,11 @@
             <button class="btn-cetak" onclick="window.print()">
                 🖨️ Cetak / Simpan PDF
             </button>
+            @if(request()->is('operator/*') || request()->routeIs('operator.*'))
+            <a href="{{ route('operator.layanan.show', $layanan) }}" class="btn-kembali">
+            @else
             <a href="{{ route('admin.layanan.show', $layanan) }}" class="btn-kembali">
+            @endif
                 ← Kembali
             </a>
         </div>
@@ -419,7 +428,14 @@
                     <p class="ttd-kota">Kemang, {{ now()->translatedFormat('d F Y') }}</p>
                     <p class="ttd-jabatan">Kepala Desa Kemang,</p>
                     <div class="ttd-ruang">
-                        <div class="stempel"></div>
+                        @if($layanan->status === 'disetujui')
+                            <img src="{{ asset('images/ttd-kades.png') }}" class="ttd-image" alt="Tanda Tangan Kades">
+                            <img src="{{ asset('images/stempel-desa.png') }}" class="stempel-image" alt="Stempel Desa">
+                        @else
+                            <div style="font-size: 8pt; color: #888; font-style: italic; border: 1px dashed #ccc; padding: 10px 15px; border-radius: 4px; font-family: var(--font-ui)">
+                                Belum Divalidasi
+                            </div>
+                        @endif
                     </div>
                     <p class="ttd-garis">( _________________________ )</p>
                     <p class="ttd-nama">Lukman Hakim</p>

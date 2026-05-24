@@ -109,7 +109,7 @@
                 <div class="form-group" style="margin-bottom:0.75rem">
                     <label class="form-label">Status</label>
                     <select name="status" class="form-control">
-                        @foreach(['menunggu'=>'⏳ Menunggu','diproses'=>'🔄 Diproses','selesai'=>'✅ Selesai','ditolak'=>'❌ Ditolak'] as $k=>$v)
+                        @foreach(['menunggu'=>'⏳ Menunggu','diproses_operator'=>'🔄 Diproses','menunggu_validasi_kades'=>'⏱️ Kirim ke Kades (Validasi)','disetujui'=>'✅ Disetujui','ditolak'=>'❌ Ditolak'] as $k=>$v)
                         <option value="{{ $k }}" {{ $layanan->status === $k ? 'selected' : '' }}>{{ $v }}</option>
                         @endforeach
                     </select>
@@ -127,21 +127,23 @@
 
         {{-- Aksi --}}
         <div class="admin-card" style="padding:1.25rem;display:flex;flex-direction:column;gap:0.75rem">
+            @if($layanan->status === 'disetujui')
             <a href="{{ route('operator.layanan.cetak', $layanan) }}" target="_blank"
                class="btn-sm btn-sm--edit" style="justify-content:center;padding:0.6rem">
                 🖨️ Cetak Surat
             </a>
+            @endif
             <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $layanan->no_hp) }}" target="_blank"
                class="btn-sm" style="background:#25D366;color:#fff;justify-content:center;padding:0.6rem">
                 💬 WhatsApp Pemohon
             </a>
-            {{-- <form action="{{ route('operator.layanan.destroy', $layanan) }}" method="POST">
+            <form action="{{ route('operator.layanan.destroy', $layanan) }}" method="POST">
                 @csrf @method('DELETE')
                 <button type="submit" class="btn-sm btn-sm--hapus" style="width:100%;justify-content:center;padding:0.6rem"
                         onclick="return confirm('Hapus pengajuan ini permanen?')">
                     🗑️ Hapus Pengajuan
                 </button>
-            </form> --}}
+            </form>
         </div>
 
         <a href="{{ route('operator.layanan.index') }}"
