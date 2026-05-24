@@ -22,11 +22,9 @@
                        value="{{ $item->nilai }}" min="0"
                        class="form-control" style="width:120px;padding:0.4rem 0.75rem;text-align:right">
                 <span style="font-size:0.75rem;color:var(--teks-muted);width:30px">{{ $item->satuan }}</span>
-                <form action="{{ route('admin.statistik.destroy', $item) }}" method="POST" style="display:inline">
-                    @csrf @method('DELETE')
-                    <button type="submit" class="btn-sm btn-sm--hapus"
-                            onclick="return confirm('Hapus data ini?')" style="padding:0.25rem 0.5rem">🗑</button>
-                </form>
+                <button type="button" class="btn-sm btn-sm--hapus"
+                        onclick="if(confirm('Hapus data ini?')) { var f = document.getElementById('delete-form'); f.action = '{{ route('admin.statistik.destroy', $item) }}'; f.submit(); }"
+                        style="padding:0.25rem 0.5rem">🗑</button>
             </div>
             @endforeach
         </div>
@@ -39,6 +37,11 @@
         💾 Simpan Semua Perubahan
     </button>
 </div>
+</form>
+
+{{-- Hidden form for delete --}}
+<form id="delete-form" method="POST" style="display:none;">
+    @csrf @method('DELETE')
 </form>
 
 {{-- Tambah data baru --}}

@@ -119,31 +119,7 @@
 
 <div class="motif-divider"></div>
 
-{{-- ===== GALERI TEASER ===== --}}
-@if($galeriUtama->count() > 0)
-<section class="section">
-    <div class="container">
-        <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;gap:1rem">
-            <div>
-                <div class="section-eyebrow">Foto & Dokumentasi</div>
-                <h2 class="section-title" style="margin-bottom:0">Galeri Desa</h2>
-            </div>
-            <a href="{{ route('galeri') }}" style="font-family:var(--font-ui);font-size:0.82rem;font-weight:600;color:var(--emas)">Lihat Semua Foto →</a>
-        </div>
-        <div class="galeri-grid">
-            @foreach($galeriUtama as $foto)
-            <a href="{{ $foto->foto_url }}" class="galeri-item glightbox" data-gallery="galeri-beranda" data-description="{{ $foto->judul }}">
-                <img src="{{ $foto->foto_url }}" alt="{{ $foto->judul }}" loading="lazy">
-                <div class="galeri-item__overlay">
-                    <span class="galeri-item__label">{{ $foto->judul }}</span>
-                </div>
-            </a>
-            @endforeach
-        </div>
-    </div>
-</section>
-<div class="motif-divider"></div>
-@endif
+
 
 {{-- ===== LAYANAN SURAT DESA ===== --}}
 <section class="section">

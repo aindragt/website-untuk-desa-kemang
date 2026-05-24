@@ -142,7 +142,6 @@
             <div style="font-family:var(--font-ui);font-size:0.72rem;color:var(--teks-muted);line-height:1.7">
                 <strong style="color:var(--teks-2)">Operator dapat:</strong><br>
                 ✅ Tulis & edit berita<br>
-                ✅ Upload foto galeri<br>
                 ✅ Proses pengajuan surat<br>
                 ✅ Baca pesan masuk<br>
                 <br>

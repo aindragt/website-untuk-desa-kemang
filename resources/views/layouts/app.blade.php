@@ -43,7 +43,7 @@
                 <li><a href="{{ route('home') }}"         class="{{ request()->routeIs('home')        ? 'active' : '' }}">Beranda</a></li>
                 <li><a href="{{ route('profil') }}"       class="{{ request()->routeIs('profil')      ? 'active' : '' }}">Profil Desa</a></li>
                 <li><a href="{{ route('statistik') }}"    class="{{ request()->routeIs('statistik')   ? 'active' : '' }}">Statistik</a></li>
-                <li><a href="{{ route('galeri') }}"       class="{{ request()->routeIs('galeri')      ? 'active' : '' }}">Galeri</a></li>
+
                 <li><a href="{{ route('berita.index') }}" class="{{ request()->routeIs('berita.*')    ? 'active' : '' }}">Berita</a></li>
                 <li><a href="{{ route('layanan.index') }}" class="{{ request()->routeIs('layanan.*')  ? 'active' : '' }}">Layanan Surat</a></li>
                 <li><a href="{{ route('kontak') }}"       class="{{ request()->routeIs('kontak')      ? 'active' : '' }}">Kontak</a></li>
@@ -83,7 +83,7 @@
                         <li><a href="{{ route('home') }}">Beranda</a></li>
                         <li><a href="{{ route('profil') }}">Profil Desa</a></li>
                         <li><a href="{{ route('statistik') }}">Statistik Desa</a></li>
-                        <li><a href="{{ route('galeri') }}">Galeri Foto</a></li>
+
                         <li><a href="{{ route('berita.index') }}">Berita</a></li>
                         <li><a href="{{ route('kontak') }}">Kontak</a></li>
                     </ul>

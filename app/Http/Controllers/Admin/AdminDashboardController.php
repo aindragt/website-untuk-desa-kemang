@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Berita;
-use App\Models\Galeri;
 use App\Models\PesanKontak;
 
 class AdminDashboardController extends Controller
@@ -14,7 +13,6 @@ class AdminDashboardController extends Controller
         $stats = [
             'total_berita'  => Berita::count(),
             'berita_tayang' => Berita::where('is_published', true)->count(),
-            'total_galeri'  => Galeri::count(),
             'pesan_baru'    => PesanKontak::where('is_read', false)->count(),
         ];
 

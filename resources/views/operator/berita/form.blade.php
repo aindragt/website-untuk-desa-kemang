@@ -139,19 +139,35 @@
             {{-- Foto --}}
             <div class="admin-card" style="padding:1.25rem">
                 <div class="form-group">
-                    <label class="form-label">Foto Berita</label>
-                    @if(isset($berita) && $berita->foto)
-                    <img src="{{ $berita->foto_url }}" alt="Foto saat ini"
-                         style="width:100%;border-radius:var(--radius);margin-bottom:0.75rem;aspect-ratio:16/9;object-fit:cover">
-                    <p style="font-size:0.72rem;color:var(--teks-muted);margin-bottom:0.5rem">
-                        Upload baru untuk mengganti foto
-                    </p>
+                    <label class="form-label">Galeri Foto Berita</label>
+                    @if(isset($berita) && $berita->images->count() > 0)
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1rem">
+                            @foreach($berita->images as $img)
+                            <div style="border:1px solid var(--border);border-radius:var(--radius);padding:0.5rem;text-align:center;background:#fff">
+                                <img src="{{ $img->foto_url }}" style="width:100%;height:80px;object-fit:cover;border-radius:4px;margin-bottom:0.5rem">
+                                <div style="display:flex;flex-direction:column;gap:5px;font-size:0.75rem;text-align:left">
+                                    <label style="cursor:pointer;display:flex;align-items:center;gap:4px">
+                                        <input type="radio" name="utama_foto" value="{{ $img->id }}" {{ $img->is_utama ? 'checked' : '' }} style="accent-color:var(--hijau)"> Utama
+                                    </label>
+                                    <label style="cursor:pointer;display:flex;align-items:center;gap:4px;color:#b91c1c">
+                                        <input type="checkbox" name="delete_fotos[]" value="{{ $img->id }}"> Hapus
+                                    </label>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    @elseif(isset($berita) && $berita->foto)
+                        <div style="border:1px solid var(--border);border-radius:var(--radius);padding:0.5rem;text-align:center;background:#fff;margin-bottom:1rem">
+                            <img src="{{ $berita->foto_url }}" style="width:100%;height:100px;object-fit:cover;border-radius:4px;margin-bottom:0.5rem">
+                            <span style="font-size:0.75rem;color:var(--teks-muted)">Foto Lama (Bawaan)</span>
+                        </div>
                     @endif
-                    <input type="file" name="foto" accept="image/*" class="form-control"
+
+                    <label class="form-label">Upload Foto Baru (Bisa Lebih Dari 1)</label>
+                    <input type="file" name="fotos[]" multiple accept="image/*" class="form-control"
                            style="padding:0.5rem" id="fotoInput">
-                    <img id="fotoPreview" class="foto-preview" alt="Preview foto">
                     <p style="font-size:0.72rem;color:var(--teks-muted);margin-top:4px">
-                        JPG / PNG / WebP, maks. 2MB
+                        Pilih beberapa foto sekaligus. JPG/PNG/WebP, maks. 2MB.
                     </p>
                 </div>
             </div>

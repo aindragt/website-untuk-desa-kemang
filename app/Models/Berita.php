@@ -43,9 +43,18 @@ class Berita extends Model
         return $query->where('kategori', $kategori);
     }
 
-    // Accessors
+    public function images()
+    {
+        return $this->hasMany(BeritaImage::class);
+    }
+
     public function getFotoUrlAttribute(): string
     {
+        $mainImage = $this->images()->where('is_utama', true)->first();
+        if ($mainImage) {
+            return $mainImage->foto_url;
+        }
+
         if ($this->foto) {
             return asset('storage/' . $this->foto);
         }

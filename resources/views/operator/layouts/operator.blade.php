@@ -39,10 +39,7 @@
                class="admin-nav__link {{ request()->routeIs('operator.berita.*') ? 'active' : '' }}">
                 <span class="admin-nav__icon">📰</span> Berita
             </a>
-            <a href="{{ route('operator.galeri.index') }}"
-               class="admin-nav__link {{ request()->routeIs('operator.galeri.*') ? 'active' : '' }}">
-                <span class="admin-nav__icon">🖼️</span> Galeri Foto
-            </a>
+
 
             <div class="admin-nav__section">Layanan</div>
             <a href="{{ route('operator.layanan.index') }}"
@@ -68,7 +65,7 @@
         {{-- Info user --}}
         <div style="padding:0.75rem 1.25rem;background:rgba(200,149,42,0.06);border-top:1px solid rgba(200,149,42,0.15)">
             <div style="font-family:var(--font-ui);font-size:0.68rem;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px">Login sebagai</div>
-            <div style="font-family:var(--font-ui);font-size:0.82rem;color:var(--emas);font-weight:500">{{ session('user_nama') }}</div>
+            <div style="font-family:var(--font-ui);font-size:0.82rem;color:var(--emas);font-weight:500">{{ Auth::check() ? Auth::user()->nama : 'Operator' }}</div>
             <div style="font-family:var(--font-ui);font-size:0.68rem;color:rgba(255,255,255,0.3)">Operator Desa</div>
         </div>
 
@@ -98,9 +95,9 @@
             <div class="admin-topbar__user">
                 <span class="role-badge-operator">Operator</span>
                 <div class="admin-topbar__avatar" style="background:var(--hijau-muda)">
-                    {{ strtoupper(substr(session('user_nama', 'O'), 0, 1)) }}
+                    {{ strtoupper(substr(Auth::check() ? Auth::user()->nama : 'O', 0, 1)) }}
                 </div>
-                <span>{{ session('user_nama') }}</span>
+                <span>{{ Auth::check() ? Auth::user()->nama : 'Operator' }}</span>
             </div>
         </div>
 
