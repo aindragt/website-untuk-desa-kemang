@@ -58,7 +58,7 @@
         <div class="berita-grid">
             @foreach($berita as $b)
             <article class="berita-card">
-                @if($b->foto)
+                @if($b->images->isNotEmpty() || $b->foto)
                     <img src="{{ $b->foto_url }}" alt="{{ $b->judul }}" class="berita-card__thumb" loading="lazy">
                 @else
                     <div class="berita-card__thumb--placeholder">

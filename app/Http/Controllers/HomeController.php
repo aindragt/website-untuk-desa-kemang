@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $beritaTerbaru = Berita::published()->limit(3)->get();
+        $beritaTerbaru = Berita::published()->with('images')->limit(3)->get();
         $statistikRingkas = [
             'total_penduduk' => Statistik::where('kategori', 'penduduk')->where('label', 'Total Penduduk')->value('nilai') ?? 2847,
             'jumlah_kk'      => Statistik::where('kategori', 'penduduk')->where('label', 'Kepala Keluarga')->value('nilai') ?? 742,

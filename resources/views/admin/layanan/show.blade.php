@@ -102,35 +102,37 @@
 
         {{-- Form ubah status --}}
         <div class="admin-card" style="padding:1.25rem">
-            <div style="font-size:0.82rem;font-weight:600;color:var(--teks);margin-bottom:1rem">🔄 Ubah Status Pengajuan</div>
+            <div style="font-size:0.82rem;font-weight:600;color:var(--teks);margin-bottom:1rem">🔄 Validasi Pengajuan (Kepala Desa)</div>
 
             <form action="{{ route('admin.layanan.status', $layanan) }}" method="POST">
                 @csrf @method('PATCH')
                 <div class="form-group" style="margin-bottom:0.75rem">
-                    <label class="form-label">Status</label>
+                    <label class="form-label">Tindakan</label>
                     <select name="status" class="form-control">
-                        @foreach(['menunggu'=>'⏳ Menunggu','diproses'=>'🔄 Diproses','selesai'=>'✅ Selesai','ditolak'=>'❌ Ditolak'] as $k=>$v)
+                        @foreach(['menunggu_validasi_kades'=>'⏱️ Menunggu Validasi','disetujui'=>'✅ Setuju / Sahkan','ditolak'=>'❌ Tolak'] as $k=>$v)
                         <option value="{{ $k }}" {{ $layanan->status === $k ? 'selected' : '' }}>{{ $v }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group" style="margin-bottom:1rem">
-                    <label class="form-label">Catatan Admin</label>
+                    <label class="form-label">Catatan Kades</label>
                     <textarea name="catatan_admin" class="form-control" rows="3"
-                              placeholder="Opsional. Misal: alasan penolakan, instruksi untuk pemohon, dll.">{{ $layanan->catatan_admin }}</textarea>
+                              placeholder="Opsional. Misal: catatan revisi, alasan penolakan, dll.">{{ $layanan->catatan_admin }}</textarea>
                 </div>
                 <button type="submit" class="btn btn--primary" style="font-size:0.82rem;padding:0.7rem">
-                    💾 Simpan Status
+                    💾 Simpan Keputusan
                 </button>
             </form>
         </div>
 
         {{-- Aksi --}}
         <div class="admin-card" style="padding:1.25rem;display:flex;flex-direction:column;gap:0.75rem">
+            @if($layanan->status === 'disetujui')
             <a href="{{ route('admin.layanan.cetak', $layanan) }}" target="_blank"
                class="btn-sm btn-sm--edit" style="justify-content:center;padding:0.6rem">
                 🖨️ Cetak Surat
             </a>
+            @endif
             <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $layanan->no_hp) }}" target="_blank"
                class="btn-sm" style="background:#25D366;color:#fff;justify-content:center;padding:0.6rem">
                 💬 WhatsApp Pemohon

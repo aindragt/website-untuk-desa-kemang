@@ -1446,6 +1446,8 @@ html {
 .badge--emas   { background: rgba(200,149,42,0.12); color: #7a5c10; }
 .badge--merah  { background: rgba(220,53,69,0.1);   color: #b91c1c; }
 .badge--abu    { background: rgba(100,100,100,0.08); color: #666; }
+.badge--biru   { background: rgba(0,123,255,0.1);   color: #0056b3; }
+.badge--ungu   { background: rgba(111,66,193,0.1);   color: #6f42c1; }
 
 /* ============================================================
    TOMBOL AKSI TABEL (btn-sm)

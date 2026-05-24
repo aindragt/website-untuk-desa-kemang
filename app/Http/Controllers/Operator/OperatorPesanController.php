@@ -19,5 +19,11 @@ class OperatorPesanController extends Controller
         return view('operator.pesan.show', compact('pesan'));
     }
 
-    // Operator TIDAK BISA hapus pesan — tidak ada method destroy()
+    public function destroy(PesanKontak $pesan)
+    {
+        $pesan->delete();
+
+        return redirect()->route('operator.pesan.index')
+            ->with('success', 'Pesan berhasil dihapus.');
+    }
 }

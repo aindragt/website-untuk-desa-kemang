@@ -55,9 +55,9 @@
             <a href="{{ route('admin.layanan.index') }}"
                class="admin-nav__link {{ request()->routeIs('admin.layanan.*') ? 'active' : '' }}">
                 <span class="admin-nav__icon">📝</span> Pengajuan Surat
-                @php $suratMenunggu = \App\Models\PengajuanSurat::where('status','menunggu')->count(); @endphp
-                @if($suratMenunggu > 0)
-                <span style="margin-left:auto;background:rgba(200,149,42,0.15);color:#7a5c10;font-size:0.62rem;padding:1px 7px;border-radius:999px;font-weight:600">{{ $suratMenunggu }}</span>
+                @php $suratMenungguValidasi = \App\Models\PengajuanSurat::where('status','menunggu_validasi_kades')->count(); @endphp
+                @if($suratMenungguValidasi > 0)
+                <span style="margin-left:auto;background:rgba(200,149,42,0.15);color:#7a5c10;font-size:0.62rem;padding:1px 7px;border-radius:999px;font-weight:600">{{ $suratMenungguValidasi }}</span>
                 @endif
             </a>
 
