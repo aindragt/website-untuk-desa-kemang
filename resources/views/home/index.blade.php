@@ -42,21 +42,21 @@
 {{-- ===== PROFIL SINGKAT ===== --}}
 <section class="section">
     <div class="container">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div>
                 <div class="section-eyebrow">Tentang Kami</div>
                 <h2 class="section-title">Mengenal Desa Kemang</h2>
-                <p class="section-desc" style="margin-bottom:1.25rem">
+                <p class="section-desc mb-5">
                     Desa Kemang adalah salah satu desa yang terletak di Kecamatan Pangkalan Kuras,
                     Kabupaten Pelalawan, Provinsi Riau. Desa ini memiliki kekayaan budaya Melayu yang
                     kental serta potensi alam yang melimpah.
                 </p>
-                <p style="color:var(--teks-2);font-size:0.9rem;line-height:1.8;margin-bottom:1.75rem">
+                <p class="text-stone-700 text-[0.9rem] leading-[1.8] mb-7">
                     Dialiri sungai Kampar di sisi barat, Desa Kemang menyimpan potensi besar di bidang
-                    pertanian, perkebunan, dan perikanan air tawar. Warganya dikenal menjaga tradisi
+                    pertanian, perkebunan, and perikanan air tawar. Warganya dikenal menjaga tradisi
                     gotong royong dan adat istiadat Melayu dengan penuh kebanggaan.
                 </p>
-                <a href="{{ route('profil') }}" class="btn btn--primary" style="width:auto;display:inline-flex">
+                <a href="{{ route('profil') }}" class="btn btn--primary w-auto inline-flex">
                     Baca Selengkapnya
                 </a>
             </div>
@@ -91,10 +91,10 @@
 {{-- ===== LEMBAGA DESA ===== --}}
 <section class="section section--alt">
     <div class="container">
-        <div style="text-align:center;margin-bottom:2.5rem">
-            <div class="section-eyebrow" style="justify-content:center">Organisasi Kemasyarakatan</div>
+        <div class="text-center mb-10">
+            <div class="section-eyebrow justify-center">Organisasi Kemasyarakatan</div>
             <h2 class="section-title">Lembaga Desa</h2>
-            <p class="section-desc" style="margin:0 auto">
+            <p class="section-desc mx-auto">
                 Desa Kemang didukung berbagai lembaga kemasyarakatan yang aktif bergerak demi kesejahteraan warga.
             </p>
         </div>
@@ -124,15 +124,15 @@
 {{-- ===== LAYANAN SURAT DESA ===== --}}
 <section class="section">
     <div class="container">
-        <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:4rem;align-items:center">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div>
                 <div class="section-eyebrow">Pelayanan Publik Online</div>
                 <h2 class="section-title">Layanan Surat Desa</h2>
-                <p style="color:var(--teks-2);font-size:0.95rem;line-height:1.8;margin-bottom:1.75rem">
+                <p class="text-stone-700 text-[0.95rem] leading-[1.8] mb-7">
                     Ajukan surat keterangan secara online tanpa perlu datang ke kantor terlebih dahulu.
                     Cukup isi formulir, dan surat Anda akan diproses oleh perangkat desa.
                 </p>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1.75rem">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-7">
                     @foreach([
                         ['🏠','Surat Keterangan Domisili','domisili'],
                         ['🏪','Surat Keterangan Usaha','usaha'],
@@ -140,20 +140,18 @@
                         ['🪪','Surat Pengantar KTP / KK','pengantar_ktpkk'],
                     ] as [$ikon,$nama,$kode])
                     <a href="{{ route('layanan.form', $kode) }}"
-                       style="display:flex;align-items:center;gap:8px;padding:0.75rem;background:var(--krem);border:1px solid var(--border);border-radius:var(--radius);font-family:var(--font-ui);font-size:0.78rem;color:var(--teks);transition:all 0.2s"
-                       onmouseover="this.style.borderColor='var(--emas)';this.style.background='#fff'"
-                       onmouseout="this.style.borderColor='var(--border)';this.style.background='var(--krem)'">
-                        <span style="font-size:1.1rem">{{ $ikon }}</span>
+                       class="flex items-center gap-2 p-3 bg-krem border border-[#D9C8A8] rounded font-ui text-[0.78rem] text-stone-900 transition-all duration-200 hover:bg-white hover:border-emas">
+                        <span class="text-[1.1rem]">{{ $ikon }}</span>
                         <span>{{ $nama }}</span>
                     </a>
                     @endforeach
                 </div>
-                <a href="{{ route('layanan.index') }}" class="btn btn--primary" style="width:auto;display:inline-flex">
+                <a href="{{ route('layanan.index') }}" class="btn btn--primary w-auto inline-flex">
                     Lihat Semua Layanan →
                 </a>
             </div>
-            <div style="background:var(--hijau);border-radius:var(--radius-lg);padding:2rem;color:#fff">
-                <div style="font-family:var(--font-display);font-size:1rem;color:var(--emas);margin-bottom:1.25rem">
+            <div class="bg-hijau rounded-lg p-8 text-white">
+                <div class="font-display text-[1rem] text-emas mb-5">
                     Alur Pengajuan Surat
                 </div>
                 @foreach([
@@ -163,11 +161,11 @@
                     ['⏳','Tunggu 1–3 hari kerja proses'],
                     ['🏢','Ambil surat ke kantor desa'],
                 ] as $i => [$ikon,$teks])
-                <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:{{ $i < 4 ? '0.9rem' : '0' }}">
-                    <div style="width:28px;height:28px;border-radius:50%;background:rgba(200,149,42,0.2);border:1px solid var(--emas);display:flex;align-items:center;justify-content:center;font-size:0.85rem;flex-shrink:0">
+                <div class="flex gap-3 items-start {{ $i < 4 ? 'mb-3.5' : 'mb-0' }}">
+                    <div class="w-7 h-7 rounded-full bg-[#C8952A]/20 border border-emas flex items-center justify-center text-[0.85rem] shrink-0">
                         {{ $ikon }}
                     </div>
-                    <p style="font-family:var(--font-ui);font-size:0.82rem;color:rgba(255,255,255,0.75);padding-top:4px;line-height:1.4">
+                    <p class="font-ui text-[0.82rem] text-white/75 pt-1 leading-relaxed">
                         {{ $teks }}
                     </p>
                 </div>
@@ -181,12 +179,12 @@
 {{-- ===== BERITA TERBARU ===== --}}
 <section class="section section--alt">
     <div class="container">
-        <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem">
+        <div class="flex items-end justify-between mb-10 flex-wrap gap-4">
             <div>
                 <div class="section-eyebrow">Informasi Terkini</div>
-                <h2 class="section-title" style="margin-bottom:0">Berita Desa</h2>
+                <h2 class="section-title mb-0">Berita Desa</h2>
             </div>
-            <a href="{{ route('berita.index') }}" style="font-family:var(--font-ui);font-size:0.82rem;font-weight:600;color:var(--emas)">Semua Berita →</a>
+            <a href="{{ route('berita.index') }}" class="font-ui text-[0.82rem] font-semibold text-emas">Semua Berita →</a>
         </div>
         <div class="berita-grid">
             @forelse($beritaTerbaru as $b)
@@ -207,7 +205,7 @@
                 </div>
             </article>
             @empty
-            <p style="color:var(--teks-muted);font-size:0.9rem">Belum ada berita tersedia.</p>
+            <p class="text-stone-500 text-[0.9rem]">Belum ada berita tersedia.</p>
             @endforelse
         </div>
     </div>
@@ -216,11 +214,11 @@
 <div class="motif-divider"></div>
 
 {{-- ===== CTA KONTAK ===== --}}
-<section class="section section--dark" style="text-align:center">
+<section class="section section--dark text-center">
     <div class="container">
-        <div class="section-eyebrow" style="justify-content:center">Hubungi Kami</div>
-        <h2 class="section-title" style="color:#fff;margin-bottom:0.75rem">Ada Pertanyaan atau Keperluan?</h2>
-        <p style="color:rgba(255,255,255,0.55);font-size:0.95rem;margin-bottom:2rem;max-width:480px;margin-left:auto;margin-right:auto">
+        <div class="section-eyebrow justify-center">Hubungi Kami</div>
+        <h2 class="section-title text-white mb-3">Ada Pertanyaan atau Keperluan?</h2>
+        <p class="text-white/55 text-[0.95rem] mb-8 max-w-[480px] mx-auto">
             Tim pemerintahan Desa Kemang siap membantu. Hubungi kami melalui formulir kontak atau kunjungi kantor desa.
         </p>
         <a href="{{ route('kontak') }}" class="hero__cta">Hubungi Kami →</a>

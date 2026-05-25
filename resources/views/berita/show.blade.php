@@ -42,12 +42,12 @@
 
                 {{-- GALERI TAMBAHAN --}}
                 @if($berita->images->where('is_utama', false)->count() > 0)
-                <div style="margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border)">
-                    <p style="font-family:var(--font-ui);font-size:0.9rem;font-weight:600;color:var(--teks);margin-bottom:1rem">Galeri Foto Tambahan:</p>
-                    <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(120px, 1fr));gap:1rem">
+                <div class="mt-10 pt-6 border-t border-[#D9C8A8]/50">
+                    <p class="font-ui text-[0.9rem] font-semibold text-stone-900 mb-4">Galeri Foto Tambahan:</p>
+                    <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
                         @foreach($berita->images->where('is_utama', false) as $img)
                         <a href="{{ $img->foto_url }}" class="glightbox" data-gallery="berita-gallery">
-                            <img src="{{ $img->foto_url }}" style="width:100%;height:100px;object-fit:cover;border-radius:var(--radius);transition:transform 0.2s" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                            <img src="{{ $img->foto_url }}" class="w-full h-[100px] object-cover rounded transition-transform duration-200 hover:scale-105" loading="lazy" alt="Foto tambahan">
                         </a>
                         @endforeach
                     </div>

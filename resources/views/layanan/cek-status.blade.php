@@ -21,23 +21,22 @@
 <div class="motif-divider"></div>
 
 <section class="section">
-    <div class="container" style="max-width:560px">
+    <div class="container max-w-[560px]">
 
         {{-- Form Cek Status --}}
         <form action="{{ route('layanan.cek-status') }}" method="GET"
-              style="background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.75rem;margin-bottom:1.5rem">
-            <h3 style="font-family:var(--font-display);font-size:1rem;color:var(--teks);margin-bottom:1rem">🔍 Masukkan Nomor Referensi</h3>
-            <div style="display:flex;gap:0.75rem">
-                <input type="text" name="nomor" class="form-control"
+              class="bg-white border border-[#D9C8A8] rounded-lg p-7 mb-6">
+            <h3 class="font-display text-[1rem] text-stone-900 mb-4">🔍 Masukkan Nomor Referensi</h3>
+            <div class="flex gap-3">
+                <input type="text" name="nomor" class="form-control flex-1 uppercase tracking-wider"
                        value="{{ $nomorReferensi }}"
                        placeholder="Contoh: SKD-2025-00001"
-                       style="flex:1;text-transform:uppercase;letter-spacing:0.05em"
                        oninput="this.value=this.value.toUpperCase()" required>
-                <button type="submit" class="btn btn--primary" style="width:auto;padding:0.75rem 1.25rem;white-space:nowrap">
+                <button type="submit" class="btn btn--primary w-auto py-3 px-5 whitespace-nowrap">
                     Cari
                 </button>
             </div>
-            <p style="font-family:var(--font-ui);font-size:0.72rem;color:var(--teks-muted);margin-top:0.5rem">
+            <p class="font-ui text-[0.72rem] text-stone-500 mt-2">
                 Nomor referensi terdiri dari prefix surat, tahun, dan urutan. Contoh: SKD-2025-00001
             </p>
         </form>
@@ -51,11 +50,11 @@
 
         @if($pengajuan)
         {{-- Status Badge Besar --}}
-        <div style="background:var(--hijau);border-radius:var(--radius-lg);padding:1.5rem;text-align:center;margin-bottom:1.25rem">
-            <div style="font-family:var(--font-display);font-size:1.25rem;color:var(--emas);font-weight:700;margin-bottom:0.25rem">
+        <div class="bg-hijau rounded-lg p-6 text-center mb-5">
+            <div class="font-display text-[1.25rem] text-emas font-bold mb-1">
                 {{ $pengajuan->nomor_referensi }}
             </div>
-            <div style="font-family:var(--font-ui);font-size:0.75rem;color:rgba(255,255,255,0.6)">{{ $pengajuan->label_jenis }}</div>
+            <div class="font-ui text-[0.75rem] text-white/60">{{ $pengajuan->label_jenis }}</div>
         </div>
 
         {{-- Progress Status --}}
@@ -66,18 +65,16 @@
         @endphp
 
         @if($pengajuan->status !== 'ditolak')
-        <div style="background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem;margin-bottom:1.25rem">
-            <div style="display:flex;align-items:center;justify-content:space-between;position:relative">
-                <div style="position:absolute;top:18px;left:10%;right:10%;height:2px;background:var(--border);z-index:0"></div>
+        <div class="bg-white border border-[#D9C8A8] rounded-lg p-6 mb-5">
+            <div class="flex items-center justify-between relative">
+                <div class="absolute top-[18px] left-[10%] right-[10%] h-[2px] bg-[#D9C8A8] z-0"></div>
                 @foreach(['menunggu'=>['⏳','Menunggu'],'diproses_operator'=>['🔄','Diproses'],'menunggu_validasi_kades'=>['⏱️','Validasi Kades'],'disetujui'=>['✅','Selesai']] as $st => [$ikon, $label])
                 @php $idx = array_search($st, $statuses); $done = $currentIdx >= $idx; @endphp
-                <div style="text-align:center;position:relative;z-index:1;flex:1">
-                    <div style="width:36px;height:36px;border-radius:50%;margin:0 auto 0.4rem;display:flex;align-items:center;justify-content:center;font-size:1rem;
-                        background:{{ $done ? 'var(--hijau)' : 'var(--border)' }};
-                        border:2px solid {{ $done ? 'var(--hijau)' : 'var(--border)' }}">
+                <div class="text-center relative z-[1] flex-1">
+                    <div class="w-9 h-9 rounded-full mx-auto mb-1.5 flex items-center justify-center text-[1rem] border-2 {{ $done ? 'bg-hijau border-hijau text-white' : 'bg-[#D9C8A8] border-[#D9C8A8]' }}">
                         {{ $ikon }}
                     </div>
-                    <div style="font-family:var(--font-ui);font-size:0.72rem;font-weight:{{ $done ? '600' : '400' }};color:{{ $done ? 'var(--hijau)' : 'var(--teks-muted)' }}">
+                    <div class="font-ui text-[0.72rem] {{ $done ? 'font-semibold text-hijau' : 'font-normal text-stone-500' }}">
                         {{ $label }}
                     </div>
                 </div>
@@ -85,7 +82,7 @@
             </div>
         </div>
         @else
-        <div class="alert alert--error" style="margin-bottom:1.25rem">
+        <div class="alert alert--error mb-5">
             ❌ <strong>Pengajuan Ditolak.</strong>
             @if($pengajuan->catatan_admin)
             Alasan: {{ $pengajuan->catatan_admin }}
@@ -94,30 +91,30 @@
         @endif
 
         {{-- Detail --}}
-        <div style="background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem">
-            <h4 style="font-family:var(--font-display);font-size:0.9rem;color:var(--teks);margin-bottom:1rem">Detail Pengajuan</h4>
+        <div class="bg-white border border-[#D9C8A8] rounded-lg p-6">
+            <h4 class="font-display text-[0.9rem] text-stone-900 mb-4">Detail Pengajuan</h4>
             @foreach([
                 ['Nama',          $pengajuan->nama_lengkap],
                 ['Keperluan',     $pengajuan->keperluan],
                 ['Tanggal Ajuan', $pengajuan->tanggal_pengajuan],
                 ['No. HP',        $pengajuan->no_hp],
             ] as $row)
-            <div style="display:flex;justify-content:space-between;padding:0.5rem 0;border-bottom:0.5px solid var(--border);font-family:var(--font-ui);font-size:0.82rem">
-                <span style="color:var(--teks-muted)">{{ $row[0] }}</span>
-                <span style="font-weight:500;color:var(--teks)">{{ $row[1] }}</span>
+            <div class="flex justify-between py-2 border-b border-[#D9C8A8]/50 font-ui text-[0.82rem]">
+                <span class="text-stone-500">{{ $row[0] }}</span>
+                <span class="font-medium text-stone-900">{{ $row[1] }}</span>
             </div>
             @endforeach
 
             @if($pengajuan->status === 'disetujui')
-            <div style="background:#ecf7ec;border:1px solid #7dbf7d;border-radius:var(--radius);padding:1rem;margin-top:1rem;font-family:var(--font-ui);font-size:0.82rem;color:#2d6a2d">
+            <div class="bg-[#ecf7ec] border border-[#7dbf7d] rounded p-4 mt-4 font-ui text-[0.82rem] text-[#2d6a2d]">
                 ✅ <strong>Surat Anda sudah selesai diproses!</strong> Silakan datang ke kantor desa dengan membawa dokumen asli dan nomor referensi ini.
             </div>
             @endif
         </div>
         @endif
 
-        <div style="text-align:center;margin-top:1.5rem">
-            <a href="{{ route('layanan.index') }}" style="font-family:var(--font-ui);font-size:0.82rem;color:var(--teks-muted)">
+        <div class="text-center mt-6">
+            <a href="{{ route('layanan.index') }}" class="font-ui text-[0.82rem] text-stone-500">
                 ← Kembali ke Layanan Surat
             </a>
         </div>

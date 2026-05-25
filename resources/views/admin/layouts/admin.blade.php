@@ -6,7 +6,8 @@
     <title>@yield('title', 'Dashboard') — Admin Desa Kemang</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&family=Lora:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     @stack('styles')
 </head>
 <body>
@@ -144,7 +145,6 @@
 
 </div>
 
-<script src="{{ asset('js/app.js') }}"></script>
 @stack('scripts')
 <script>
     // Tampilkan tombol toggle sidebar di mobile

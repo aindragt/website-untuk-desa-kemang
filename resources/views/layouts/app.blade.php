@@ -10,21 +10,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.0/css/glightbox.min.css">
 
     @stack('styles')
 </head>
 <body>
 
-    <nav class="navbar" id="navbar">
+    <nav class="navbar" id="navbar" x-data="{ mobileMenuOpen: false }">
         <div class="container navbar__inner">
             <a href="{{ route('home') }}" class="navbar__brand" data-no-swup>
                 {{-- <div class="navbar__logo">DK</div> --}}
                     <div class="logo">
                         @if(file_exists(public_path('logo/logo-pelalawan.png')))
                             <img src="{{ asset('logo/logo-pelalawan.png') }}"
-                                width="33" height="33" style="object-fit:contain">
+                                width="33" height="33" class="object-contain">
                         @else
                             <div class="kop-logo-teks">KAB.<br>PELA<br>LAWAN</div>
                         @endif
@@ -35,11 +36,11 @@
                 </div>
             </a>
 
-            <button class="navbar__toggle" id="navToggle" aria-label="Menu">
+            <button class="navbar__toggle" id="navToggle" aria-label="Menu" @click="mobileMenuOpen = !mobileMenuOpen">
                 <span></span><span></span><span></span>
             </button>
 
-            <ul class="navbar__menu" id="navMenu">
+            <ul class="navbar__menu" id="navMenu" :class="{ 'open': mobileMenuOpen }" @click.away="mobileMenuOpen = false">
                 <li><a href="{{ route('home') }}"         class="{{ request()->routeIs('home')        ? 'active' : '' }}">Beranda</a></li>
                 <li><a href="{{ route('profil') }}"       class="{{ request()->routeIs('profil')      ? 'active' : '' }}">Profil Desa</a></li>
                 <li><a href="{{ route('statistik') }}"    class="{{ request()->routeIs('statistik')   ? 'active' : '' }}">Statistik</a></li>
@@ -65,14 +66,14 @@
                     <div class="logo">
                         @if(file_exists(public_path('logo/logo-pelalawan.png')))
                             <img src="{{ asset('logo/logo-pelalawan.png') }}"
-                                width="33" height="33" style="object-fit:contain">
+                                width="33" height="33" class="object-contain">
                         @else
                             <div class="kop-logo-teks">KAB.<br>PELA<br>LAWAN</div>
                         @endif
                     </div>
                     <h3 class="footer__desa">Desa Kemang</h3>
                     <p class="footer__alamat">Kecamatan Pangkalan Kuras<br>Kabupaten Pelalawan, Riau</p>
-                    <p class="footer__alamat" style="margin-top:0.5rem">
+                    <p class="footer__alamat mt-2">
                         📞 +62 822-8575-3837<br>
                         ✉ desakemang.pelalawan@gmail.com
                     </p>
@@ -122,7 +123,6 @@
     {{-- Swup: page transitions --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/swup/4.6.0/Swup.min.js"></script>
 
-    <script src="{{ asset('js/app.js') }}"></script>
     @stack('scripts')
 </body>
 </html>
