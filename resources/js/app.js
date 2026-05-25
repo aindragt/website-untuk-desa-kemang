@@ -139,8 +139,13 @@ function initPageFunctions() {
     });
 }
 
-// --- Jalankan saat DOM siap ---
-document.addEventListener('DOMContentLoaded', function () {
+// --- Jalankan saat DOM siap atau langsung jika sudah terload ---
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () {
+        initSwup();
+        initPageFunctions();
+    });
+} else {
     initSwup();
     initPageFunctions();
-});
+}

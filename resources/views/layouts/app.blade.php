@@ -18,7 +18,7 @@
 </head>
 <body>
 
-    <nav class="navbar" id="navbar" x-data="{ mobileMenuOpen: false }">
+    <nav class="navbar" id="navbar" x-data="{ mobileMenuOpen: false, isMobile: window.innerWidth <= 768 }" @resize.window="isMobile = (window.innerWidth <= 768)">
         <div class="container navbar__inner">
             <a href="{{ route('home') }}" class="navbar__brand" data-no-swup>
                 {{-- <div class="navbar__logo">DK</div> --}}
@@ -40,7 +40,15 @@
                 <span></span><span></span><span></span>
             </button>
 
-            <ul class="navbar__menu" id="navMenu" :class="{ 'open': mobileMenuOpen }" @click.away="mobileMenuOpen = false">
+            <ul class="navbar__menu" id="navMenu" 
+                x-show="!isMobile || mobileMenuOpen"
+                x-transition:enter="transition ease-out duration-300 transform"
+                x-transition:enter-start="-translate-y-4 opacity-0"
+                x-transition:enter-end="translate-y-0 opacity-100"
+                x-transition:leave="transition ease-in duration-200 transform"
+                x-transition:leave-start="translate-y-0 opacity-100"
+                x-transition:leave-end="-translate-y-4 opacity-0"
+                @click.away="mobileMenuOpen = false">
                 <li><a href="{{ route('home') }}"         class="{{ request()->routeIs('home')        ? 'active' : '' }}">Beranda</a></li>
                 <li><a href="{{ route('profil') }}"       class="{{ request()->routeIs('profil')      ? 'active' : '' }}">Profil Desa</a></li>
                 <li><a href="{{ route('statistik') }}"    class="{{ request()->routeIs('statistik')   ? 'active' : '' }}">Statistik</a></li>

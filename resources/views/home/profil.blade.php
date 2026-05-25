@@ -30,7 +30,11 @@
         </div>
 
         {{-- TAB: SEJARAH --}}
-        <div class="profil-panel" id="tab-sejarah" x-show="activeTab === 'sejarah'">
+        <div class="profil-panel" id="tab-sejarah" 
+             x-show="activeTab === 'sejarah'"
+             x-transition:enter="transition ease-out duration-300 transform"
+             x-transition:enter-start="opacity-0 translate-y-4"
+             x-transition:enter-end="opacity-100 translate-y-0">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
                 <div>
                     <div class="section-eyebrow">Jejak Sejarah</div>
@@ -71,7 +75,12 @@
         </div>
 
         {{-- TAB: WILAYAH --}}
-        <div class="profil-panel" id="tab-wilayah" x-show="activeTab === 'wilayah'" x-cloak>
+        <div class="profil-panel" id="tab-wilayah" 
+             x-show="activeTab === 'wilayah'" 
+             x-cloak
+             x-transition:enter="transition ease-out duration-300 transform"
+             x-transition:enter-start="opacity-0 translate-y-4"
+             x-transition:enter-end="opacity-100 translate-y-0">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
                 <div>
                     <div class="section-eyebrow">Geografi</div>
@@ -128,7 +137,12 @@
         </div>
 
         {{-- TAB: VISI MISI --}}
-        <div class="profil-panel" id="tab-visi" x-show="activeTab === 'visi'" x-cloak>
+        <div class="profil-panel" id="tab-visi" 
+             x-show="activeTab === 'visi'" 
+             x-cloak
+             x-transition:enter="transition ease-out duration-300 transform"
+             x-transition:enter-start="opacity-0 translate-y-4"
+             x-transition:enter-end="opacity-100 translate-y-0">
             <div class="max-w-[760px] mx-auto text-center">
                 <div class="section-eyebrow justify-center">Arah & Tujuan</div>
                 <h2 class="section-title">Visi & Misi Desa Kemang</h2>
@@ -158,7 +172,12 @@
         </div>
 
         {{-- TAB: POTENSI --}}
-        <div class="profil-panel" id="tab-potensi" x-show="activeTab === 'potensi'" x-cloak>
+        <div class="profil-panel" id="tab-potensi" 
+             x-show="activeTab === 'potensi'" 
+             x-cloak
+             x-transition:enter="transition ease-out duration-300 transform"
+             x-transition:enter-start="opacity-0 translate-y-4"
+             x-transition:enter-end="opacity-100 translate-y-0">
             <div class="section-eyebrow">Kekayaan Desa</div>
             <h2 class="section-title mb-8">Potensi Desa Kemang</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -180,7 +199,12 @@
         </div>
 
         {{-- TAB: APARATUR DESA --}}
-        <div class="profil-panel" id="tab-aparatur" x-show="activeTab === 'aparatur'" x-cloak>
+        <div class="profil-panel" id="tab-aparatur" 
+             x-show="activeTab === 'aparatur'" 
+             x-cloak
+             x-transition:enter="transition ease-out duration-300 transform"
+             x-transition:enter-start="opacity-0 translate-y-4"
+             x-transition:enter-end="opacity-100 translate-y-0">
             <div class="section-eyebrow">Struktur Pemerintahan</div>
             <h2 class="section-title mb-8">Aparatur Desa Kemang</h2>
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
