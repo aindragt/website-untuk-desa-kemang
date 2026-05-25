@@ -60,7 +60,7 @@
 
         {{-- Progress Status --}}
         @php
-            $statuses = ['menunggu','diproses','selesai'];
+            $statuses = ['menunggu','diproses_operator','menunggu_validasi_kades','disetujui'];
             $currentIdx = array_search($pengajuan->status, $statuses);
             if ($pengajuan->status === 'ditolak') $currentIdx = -1;
         @endphp
@@ -69,7 +69,7 @@
         <div style="background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem;margin-bottom:1.25rem">
             <div style="display:flex;align-items:center;justify-content:space-between;position:relative">
                 <div style="position:absolute;top:18px;left:10%;right:10%;height:2px;background:var(--border);z-index:0"></div>
-                @foreach(['menunggu'=>['⏳','Menunggu'],'diproses'=>['🔄','Diproses'],'selesai'=>['✅','Selesai']] as $st => [$ikon, $label])
+                @foreach(['menunggu'=>['⏳','Menunggu'],'diproses_operator'=>['🔄','Diproses'],'menunggu_validasi_kades'=>['⏱️','Validasi Kades'],'disetujui'=>['✅','Selesai']] as $st => [$ikon, $label])
                 @php $idx = array_search($st, $statuses); $done = $currentIdx >= $idx; @endphp
                 <div style="text-align:center;position:relative;z-index:1;flex:1">
                     <div style="width:36px;height:36px;border-radius:50%;margin:0 auto 0.4rem;display:flex;align-items:center;justify-content:center;font-size:1rem;
@@ -108,7 +108,7 @@
             </div>
             @endforeach
 
-            @if($pengajuan->status === 'selesai')
+            @if($pengajuan->status === 'disetujui')
             <div style="background:#ecf7ec;border:1px solid #7dbf7d;border-radius:var(--radius);padding:1rem;margin-top:1rem;font-family:var(--font-ui);font-size:0.82rem;color:#2d6a2d">
                 ✅ <strong>Surat Anda sudah selesai diproses!</strong> Silakan datang ke kantor desa dengan membawa dokumen asli dan nomor referensi ini.
             </div>

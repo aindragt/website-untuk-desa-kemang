@@ -13,7 +13,7 @@ class OperatorDashboardController extends Controller
     {
         $stats = [
             'pengajuan_menunggu' => PengajuanSurat::where('status', 'menunggu')->count(),
-            'pengajuan_diproses' => PengajuanSurat::where('status', 'diproses')->count(),
+            'pengajuan_diproses' => PengajuanSurat::where('status', 'diproses_operator')->count(),
             'pesan_baru'         => PesanKontak::where('is_read', false)->count(),
             'total_berita'       => Berita::count(),
         ];
