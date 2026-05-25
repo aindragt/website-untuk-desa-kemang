@@ -114,7 +114,7 @@ resources/views/operator/dashboard.blade.php
         ⚠️ Fitur yang memerlukan akses Admin
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:0.5rem">
-        @foreach(['Hapus Berita','Hapus Foto Galeri','Hapus Pengajuan Surat','Hapus Pesan','Kelola Data Statistik','Kelola Akun Operator'] as $f)
+        @foreach(['Kelola Akun Operator'] as $f)
         <span style="background:#faf5eb;border:1px solid var(--krem-tua);border-radius:999px;font-family:var(--font-ui);font-size:0.72rem;color:var(--teks-muted);padding:3px 10px">
             🔒 {{ $f }}
         </span>
