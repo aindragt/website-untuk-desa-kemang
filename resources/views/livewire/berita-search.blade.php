@@ -1,25 +1,27 @@
-<div class="space-y-6">
+<div>
     {{-- Search & Filter Section --}}
-    <div class="bg-white rounded-lg shadow-md p-6 animate-fade-in">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div style="background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem;margin-bottom:1.5rem">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem">
             {{-- Search Input --}}
-            <div class="md:col-span-2">
-                <label class="block text-sm font-medium text-gray-700 mb-2">
+            <div style="grid-column:1/3">
+                <label style="display:block;font-family:var(--font-ui);font-size:0.82rem;font-weight:600;color:var(--teks);margin-bottom:0.5rem">
                     Cari Berita
                 </label>
                 <input type="text"
                        wire:model.live="search"
                        placeholder="Ketik judul atau kata kunci..."
-                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
+                       class="form-control"
+                       style="width:100%">
             </div>
 
             {{-- Category Filter --}}
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">
+                <label style="display:block;font-family:var(--font-ui);font-size:0.82rem;font-weight:600;color:var(--teks);margin-bottom:0.5rem">
                     Kategori
                 </label>
                 <select wire:model.live="kategori"
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
+                        class="form-control"
+                        style="width:100%">
                     <option value="">Semua Kategori</option>
                     @foreach ($kategoriList as $key => $label)
                         <option value="{{ $key }}">{{ $label }}</option>
@@ -30,9 +32,10 @@
 
         {{-- Reset Button --}}
         @if ($search || $kategori)
-            <div class="mt-4">
+            <div style="margin-top:1rem">
                 <button wire:click="resetSearch"
-                        class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors">
+                        class="btn btn--secondary"
+                        style="width:auto;padding:0.5rem 1rem">
                     Reset Filter
                 </button>
             </div>
@@ -40,14 +43,14 @@
     </div>
 
     {{-- Results Info --}}
-    <div class="text-sm text-gray-600">
+    <div style="font-family:var(--font-ui);font-size:0.85rem;color:var(--teks-muted);margin-bottom:1.5rem">
         @if ($search || $kategori)
             Menampilkan hasil pencarian
             @if ($search)
-                untuk "<strong>{{ $search }}</strong>"
+                untuk "<strong style="color:var(--teks)">{{ $search }}</strong>"
             @endif
             @if ($kategori)
-                di kategori "<strong>{{ $kategoriList[$kategori] ?? $kategori }}</strong>"
+                di kategori "<strong style="color:var(--teks)">{{ $kategoriList[$kategori] ?? $kategori }}</strong>"
             @endif
         @else
             Menampilkan semua berita
@@ -55,70 +58,72 @@
     </div>
 
     {{-- Loading State --}}
-    <div wire:loading class="flex items-center justify-center py-8">
-        <div class="animate-spin">
-            <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div wire:loading style="display:flex;align-items:center;justify-content:center;padding:2rem">
+        <div style="animation:spin 1s linear infinite">
+            <svg style="width:2rem;height:2rem;color:var(--emas)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
             </svg>
         </div>
     </div>
 
     {{-- Berita Grid --}}
-    <div wire:loading.remove class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div wire:loading.remove style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem">
         @forelse ($berita as $item)
-            <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover animate-fade-in-up"
-                 style="animation-delay: {{ $loop->index * 0.1 }}s">
+            <article class="berita-card" style="animation:fadeInUp 0.6s ease-out forwards;opacity:0" style="animation-delay:{{ $loop->index * 0.1 }}s">
                 {{-- Image --}}
-                <div class="relative h-48 bg-gray-200 overflow-hidden">
+                <div style="position:relative;height:12rem;background:var(--krem);overflow:hidden">
                     <img src="{{ $item->foto_url }}"
                          alt="{{ $item->judul }}"
-                         class="w-full h-full object-cover hover:scale-110 transition-transform duration-300">
+                         class="berita-card__thumb"
+                         style="width:100%;height:100%;object-fit:cover;transition:transform 0.3s ease-out">
                 </div>
 
                 {{-- Content --}}
-                <div class="p-4">
+                <div style="padding:1rem">
                     {{-- Category Badge --}}
-                    <span class="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full mb-2">
+                    <span style="display:inline-block;padding:0.25rem 0.75rem;background:var(--emas);color:#fff;font-family:var(--font-ui);font-size:0.7rem;font-weight:600;border-radius:var(--radius);margin-bottom:0.5rem">
                         {{ $kategoriList[$item->kategori] ?? $item->kategori }}
                     </span>
 
                     {{-- Title --}}
-                    <h3 class="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
+                    <h3 style="font-family:var(--font-display);font-size:0.95rem;color:var(--teks);margin-bottom:0.5rem;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">
                         {{ $item->judul }}
                     </h3>
 
                     {{-- Summary --}}
-                    <p class="text-gray-600 text-sm mb-4 line-clamp-3">
+                    <p style="font-family:var(--font-ui);font-size:0.8rem;color:var(--teks-2);margin-bottom:1rem;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden">
                         {{ $item->ringkasan_auto }}
                     </p>
 
                     {{-- Meta --}}
-                    <div class="flex items-center justify-between text-xs text-gray-500 mb-4">
+                    <div style="display:flex;align-items:center;justify-content:space-between;font-family:var(--font-ui);font-size:0.75rem;color:var(--teks-muted);margin-bottom:1rem">
                         <span>{{ $item->penulis ?? 'Admin' }}</span>
                         <span>{{ $item->tanggal_format }}</span>
                     </div>
 
                     {{-- Read More Button --}}
                     <a href="{{ route('berita.show', $item->slug) }}"
-                       class="inline-block px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm font-medium">
+                       style="display:inline-block;padding:0.5rem 1rem;background:var(--emas);color:#fff;border-radius:var(--radius);font-family:var(--font-ui);font-size:0.8rem;font-weight:600;text-decoration:none;transition:all 0.3s ease-out"
+                       onmouseover="this.style.background='var(--emas-dark)';this.style.transform='translateY(-2px)'"
+                       onmouseout="this.style.background='var(--emas)';this.style.transform='translateY(0)'">
                         Baca Selengkapnya
                     </a>
                 </div>
-            </div>
+            </article>
         @empty
-            <div class="col-span-full text-center py-12">
-                <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div style="grid-column:1/-1;text-align:center;padding:3rem 0">
+                <svg style="width:4rem;height:4rem;color:var(--krem-tua);margin:0 auto 1rem" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
-                <p class="text-gray-500 text-lg">Berita tidak ditemukan</p>
-                <p class="text-gray-400 text-sm mt-1">Coba ubah filter atau kata kunci pencarian</p>
+                <p style="font-family:var(--font-display);font-size:1rem;color:var(--teks-2);margin-bottom:0.5rem">Berita tidak ditemukan</p>
+                <p style="font-family:var(--font-ui);font-size:0.8rem;color:var(--teks-muted)">Coba ubah filter atau kata kunci pencarian</p>
             </div>
         @endempty
     </div>
 
     {{-- Pagination --}}
     @if ($berita->hasPages())
-        <div class="mt-8">
+        <div style="margin-top:2rem">
             {{ $berita->links() }}
         </div>
     @endif
