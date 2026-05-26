@@ -4,14 +4,24 @@ namespace App\Livewire;
 
 use App\Models\Berita;
 use Livewire\Component;
-use Livewire\Attributes\Reactive;
+use Livewire\Attributes\On;
 
 class BeritaSearch extends Component
 {
-    #[Reactive]
     public string $search = '';
-
     public string $kategori = '';
+
+    #[On('search-updated')]
+    public function updateSearch($value)
+    {
+        $this->search = $value;
+    }
+
+    #[On('kategori-updated')]
+    public function updateKategori($value)
+    {
+        $this->kategori = $value;
+    }
 
     public function render()
     {

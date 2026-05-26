@@ -127,3 +127,54 @@
 </section>
 
 @endsection
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Counter animation untuk stat cards
+    const counters = document.querySelectorAll('[data-counter]');
+    
+    const animateCounter = (element) => {
+        const target = parseInt(element.getAttribute('data-counter'));
+        const duration = 2000; // 2 seconds
+        const start = Date.now();
+        
+        const update = () => {
+            const elapsed = Date.now() - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const current = Math.floor(target * progress);
+            
+            element.textContent = new Intl.NumberFormat('id-ID').format(current);
+            
+            if (progress < 1) {
+                requestAnimationFrame(update);
+            }
+        };
+        
+        update();
+    };
+    
+    // Trigger counter animation when element is visible
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    });
+    
+    counters.forEach(counter => observer.observe(counter));
+    
+    // Animate bar charts dengan delay
+    const bars = document.querySelectorAll('.bar-row__fill');
+    
+    bars.forEach((bar, index) => {
+        const width = bar.getAttribute('data-width');
+        setTimeout(() => {
+            bar.style.width = width + '%';
+        }, index * 100);
+    });
+});
+</script>
+@endpush

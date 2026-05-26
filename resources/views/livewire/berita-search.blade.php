@@ -103,9 +103,8 @@
 
                     {{-- Read More Button --}}
                     <a href="{{ route('berita.show', $item->slug) }}"
-                       style="display:inline-block;padding:0.5rem 1rem;background:var(--emas);color:#fff;border-radius:var(--radius);font-family:var(--font-ui);font-size:0.8rem;font-weight:600;text-decoration:none;transition:all 0.3s ease-out"
-                       onmouseover="this.style.background='var(--emas-dark)';this.style.transform='translateY(-2px)'"
-                       onmouseout="this.style.background='var(--emas)';this.style.transform='translateY(0)'">
+                       style="display:inline-block;padding:0.5rem 1rem;background:var(--emas);color:#fff;border-radius:var(--radius);font-family:var(--font-ui);font-size:0.8rem;font-weight:600;text-decoration:none;transition:all 0.3s ease-out;cursor:pointer"
+                       class="berita-btn">
                         Baca Selengkapnya
                     </a>
                 </div>

@@ -223,6 +223,36 @@
     transform: scale(1.05);
 }
 
+/* Berita Button Hover */
+.berita-btn {
+    transition: all 0.3s ease-out;
+}
+
+.berita-btn:hover {
+    background: var(--emas-dark) !important;
+    transform: translateY(-2px);
+}
+
+/* Status Button Hover */
+.status-btn {
+    transition: all 0.3s ease-out;
+}
+
+.status-btn:hover {
+    background: var(--emas-dark) !important;
+    transform: translateY(-2px);
+}
+
+/* Cetak Button Hover */
+.cetak-btn {
+    transition: all 0.3s ease-out;
+}
+
+.cetak-btn:hover {
+    background: #16a34a !important;
+    transform: translateY(-2px);
+}
+
 /* Card Hover Effects */
 .card-hover {
     transition: all 0.3s ease-out;

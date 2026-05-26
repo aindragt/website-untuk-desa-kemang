@@ -16,8 +16,7 @@
                            autocomplete="off">
                     <button type="submit"
                             style="padding:0.5rem 1.5rem;background:var(--emas);color:#fff;border-radius:var(--radius);font-family:var(--font-ui);font-weight:600;border:none;cursor:pointer;transition:all 0.3s ease-out"
-                            onmouseover="this.style.background='var(--emas-dark)';this.style.transform='translateY(-2px)'"
-                            onmouseout="this.style.background='var(--emas)';this.style.transform='translateY(0)'"
+                            class="status-btn"
                             wire:loading.attr="disabled">
                         <span wire:loading.remove>Cek Status</span>
                         <span wire:loading style="display:flex;align-items:center;justify-content:center;gap:0.5rem">
@@ -198,8 +197,7 @@
                     <div style="margin-top:1.5rem;display:flex;gap:0.75rem">
                         <a href="{{ route('layanan.cek-status', ['nomor' => $pengajuan->nomor_referensi]) }}"
                            style="flex:1;padding:0.5rem 1rem;background:#22c55e;color:#fff;border-radius:var(--radius);font-family:var(--font-ui);font-weight:600;text-align:center;text-decoration:none;transition:all 0.3s ease-out"
-                           onmouseover="this.style.background='#16a34a';this.style.transform='translateY(-2px)'"
-                           onmouseout="this.style.background='#22c55e';this.style.transform='translateY(0)'">
+                           class="cetak-btn">
                             Cetak Surat
                         </a>
                     </div>
