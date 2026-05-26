@@ -210,3 +210,48 @@
 </section>
 
 @endsection
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Tab switching untuk profil
+    const tabs = document.querySelectorAll('.profil-tab')
+    const panels = document.querySelectorAll('.profil-panel')
+
+    // Hide all panels initially
+    panels.forEach(panel => {
+        panel.style.display = 'none'
+    })
+
+    // Show first panel
+    if (panels.length > 0) {
+        panels[0].style.display = 'block'
+    }
+
+    // Tab click handler
+    tabs.forEach(tab => {
+        tab.addEventListener('click', (e) => {
+            e.preventDefault()
+
+            // Remove active class from all tabs
+            tabs.forEach(t => t.classList.remove('active'))
+
+            // Add active class to clicked tab
+            tab.classList.add('active')
+
+            // Hide all panels
+            panels.forEach(panel => {
+                panel.style.display = 'none'
+            })
+
+            // Show selected panel
+            const targetId = tab.getAttribute('data-target')
+            const targetPanel = document.getElementById(targetId)
+            if (targetPanel) {
+                targetPanel.style.display = 'block'
+            }
+        })
+    })
+})
+</script>
+@endpush

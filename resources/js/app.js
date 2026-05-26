@@ -105,10 +105,10 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 navbar.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.1)'
-                navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.98)'
+                navbar.classList.add('scrolled')
             } else {
                 navbar.style.boxShadow = 'none'
-                navbar.style.backgroundColor = 'transparent'
+                navbar.classList.remove('scrolled')
             }
         })
     }
