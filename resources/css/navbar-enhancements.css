@@ -1,0 +1,347 @@
+/* ============================================================
+   NAVBAR ENHANCEMENTS
+   ============================================================ */
+
+/* Navbar Smooth Transitions */
+.navbar {
+    transition: all 0.3s ease-in-out;
+    backdrop-filter: blur(10px);
+}
+
+.navbar.scrolled {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.98);
+}
+
+/* Mobile Menu Animation */
+.navbar__menu {
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar__menu.active {
+    animation: slideInLeft 0.3s ease-out;
+}
+
+/* Navbar Toggle Animation */
+.navbar__toggle {
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar__toggle.active span {
+    background-color: var(--emas);
+}
+
+.navbar__toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.navbar__toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.navbar__toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Menu Items Animation */
+.navbar__menu li a {
+    transition: all 0.3s ease-out;
+    position: relative;
+}
+
+.navbar__menu li a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--emas);
+    transition: width 0.3s ease-out;
+}
+
+.navbar__menu li a:hover::after,
+.navbar__menu li a.active::after {
+    width: 100%;
+}
+
+/* Navbar Brand Animation */
+.navbar__brand {
+    transition: all 0.3s ease-out;
+}
+
+.navbar__brand:hover {
+    transform: scale(1.02);
+}
+
+/* ============================================================
+   HERO SECTION ENHANCEMENTS
+   ============================================================ */
+
+.hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero__pattern {
+    animation: fadeIn 0.8s ease-out;
+}
+
+.hero__content {
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.hero__badge {
+    animation: fadeInDown 0.6s ease-out;
+}
+
+.hero h1 {
+    animation: fadeInUp 0.8s ease-out 0.3s both;
+}
+
+.hero__sub {
+    animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.hero__desc {
+    animation: fadeInUp 0.8s ease-out 0.5s both;
+}
+
+.hero__cta {
+    animation: fadeInUp 0.8s ease-out 0.6s both;
+    transition: all 0.3s ease-out;
+}
+
+.hero__cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.hero__stats {
+    animation: fadeInUp 0.8s ease-out 0.7s both;
+}
+
+.hero__stat-num {
+    transition: all 0.3s ease-out;
+}
+
+.hero__stats > div:hover .hero__stat-num {
+    color: var(--emas);
+    transform: scale(1.1);
+}
+
+/* ============================================================
+   SECTION ANIMATIONS
+   ============================================================ */
+
+.section {
+    animation: fadeIn 0.6s ease-out;
+}
+
+.section-eyebrow {
+    animation: fadeInDown 0.6s ease-out;
+}
+
+.section-title {
+    animation: fadeInUp 0.6s ease-out 0.1s both;
+}
+
+.section-desc {
+    animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+/* ============================================================
+   CARD ANIMATIONS
+   ============================================================ */
+
+.berita-card,
+.profil-card,
+.lembaga-card {
+    transition: all 0.3s ease-out;
+    opacity: 0;
+}
+
+.berita-card.animate-fade-in-up,
+.profil-card.animate-fade-in-up,
+.lembaga-card.animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.berita-card:hover,
+.profil-card:hover,
+.lembaga-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.berita-card__thumb {
+    transition: transform 0.3s ease-out;
+}
+
+.berita-card:hover .berita-card__thumb {
+    transform: scale(1.05);
+}
+
+/* ============================================================
+   BUTTON ANIMATIONS
+   ============================================================ */
+
+.btn {
+    transition: all 0.3s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.btn--primary:hover {
+    background-color: var(--emas-dark);
+}
+
+/* ============================================================
+   LINK ANIMATIONS
+   ============================================================ */
+
+a {
+    transition: color 0.3s ease-out;
+}
+
+a:hover {
+    color: var(--emas);
+}
+
+/* ============================================================
+   FOOTER ANIMATIONS
+   ============================================================ */
+
+.footer {
+    animation: fadeIn 0.6s ease-out;
+}
+
+.footer__col {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.footer__links li {
+    transition: all 0.3s ease-out;
+}
+
+.footer__links li:hover {
+    transform: translateX(4px);
+}
+
+/* ============================================================
+   FORM ANIMATIONS
+   ============================================================ */
+
+.form-control,
+textarea,
+select {
+    transition: all 0.3s ease-out;
+}
+
+.form-control:focus,
+textarea:focus,
+select:focus {
+    transform: scale(1.02);
+    box-shadow: 0 0 0 3px rgba(200, 149, 42, 0.1);
+}
+
+/* ============================================================
+   LOADING ANIMATIONS
+   ============================================================ */
+
+.loading {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.spinner {
+    animation: spin 1s linear infinite;
+}
+
+/* ============================================================
+   PAGE TRANSITION
+   ============================================================ */
+
+.transition-fade {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* ============================================================
+   RESPONSIVE ANIMATIONS
+   ============================================================ */
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .berita-grid,
+    .profil-grid,
+    .lembaga-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Disable animations on mobile for better performance */
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+}
+
+/* ============================================================
+   ACCESSIBILITY
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Focus visible for keyboard navigation */
+:focus-visible {
+    outline: 2px solid var(--emas);
+    outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 2px solid var(--emas);
+    outline-offset: 2px;
+}

@@ -40,10 +40,10 @@
 <div class="motif-divider"></div>
 
 {{-- ===== PROFIL SINGKAT ===== --}}
-<section class="section">
+<section class="section" x-data="{ shown: false }" x-intersect="shown = true">
     <div class="container">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center">
-            <div>
+            <div x-show="shown" x-transition.duration.500ms class="animate-fade-in-left">
                 <div class="section-eyebrow">Tentang Kami</div>
                 <h2 class="section-title">Mengenal Desa Kemang</h2>
                 <p class="section-desc" style="margin-bottom:1.25rem">
@@ -60,7 +60,7 @@
                     Baca Selengkapnya
                 </a>
             </div>
-            <div class="profil-grid">
+            <div x-show="shown" x-transition.duration.500ms.delay.200ms class="profil-grid">
                 <div class="profil-card">
                     <div class="profil-card__icon">🗺️</div>
                     <div class="profil-card__title">Wilayah</div>

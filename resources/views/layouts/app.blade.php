@@ -13,11 +13,14 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.0/css/glightbox.min.css">
 
+    @vite(['resources/css/animations.css'])
+    @livewireStyles
+
     @stack('styles')
 </head>
 <body>
 
-    <nav class="navbar" id="navbar">
+    <nav class="navbar" id="navbar" x-data="navigation()" @scroll.window="handleScroll()">
         <div class="container navbar__inner">
             <a href="{{ route('home') }}" class="navbar__brand" data-no-swup>
                 {{-- <div class="navbar__logo">DK</div> --}}
@@ -35,18 +38,18 @@
                 </div>
             </a>
 
-            <button class="navbar__toggle" id="navToggle" aria-label="Menu">
+            <button class="navbar__toggle" id="navToggle" @click="toggleMobileMenu()" aria-label="Menu">
                 <span></span><span></span><span></span>
             </button>
 
-            <ul class="navbar__menu" id="navMenu">
-                <li><a href="{{ route('home') }}"         class="{{ request()->routeIs('home')        ? 'active' : '' }}">Beranda</a></li>
-                <li><a href="{{ route('profil') }}"       class="{{ request()->routeIs('profil')      ? 'active' : '' }}">Profil Desa</a></li>
-                <li><a href="{{ route('statistik') }}"    class="{{ request()->routeIs('statistik')   ? 'active' : '' }}">Statistik</a></li>
+            <ul class="navbar__menu" id="navMenu" :class="{ 'active': mobileMenuOpen }" @click.away="closeMobileMenu()">
+                <li><a href="{{ route('home') }}"         class="{{ request()->routeIs('home')        ? 'active' : '' }}" @click="closeMobileMenu()">Beranda</a></li>
+                <li><a href="{{ route('profil') }}"       class="{{ request()->routeIs('profil')      ? 'active' : '' }}" @click="closeMobileMenu()">Profil Desa</a></li>
+                <li><a href="{{ route('statistik') }}"    class="{{ request()->routeIs('statistik')   ? 'active' : '' }}" @click="closeMobileMenu()">Statistik</a></li>
 
-                <li><a href="{{ route('berita.index') }}" class="{{ request()->routeIs('berita.*')    ? 'active' : '' }}">Berita</a></li>
-                <li><a href="{{ route('layanan.index') }}" class="{{ request()->routeIs('layanan.*')  ? 'active' : '' }}">Layanan Surat</a></li>
-                <li><a href="{{ route('kontak') }}"       class="{{ request()->routeIs('kontak')      ? 'active' : '' }}">Kontak</a></li>
+                <li><a href="{{ route('berita.index') }}" class="{{ request()->routeIs('berita.*')    ? 'active' : '' }}" @click="closeMobileMenu()">Berita</a></li>
+                <li><a href="{{ route('layanan.index') }}" class="{{ request()->routeIs('layanan.*')  ? 'active' : '' }}" @click="closeMobileMenu()">Layanan Surat</a></li>
+                <li><a href="{{ route('kontak') }}"       class="{{ request()->routeIs('kontak')      ? 'active' : '' }}" @click="closeMobileMenu()">Kontak</a></li>
             </ul>
         </div>
     </nav>
@@ -122,7 +125,8 @@
     {{-- Swup: page transitions --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/swup/4.6.0/Swup.min.js"></script>
 
-    <script src="{{ asset('js/app.js') }}"></script>
+    @vite(['resources/js/app.js'])
+    @livewireScripts
     @stack('scripts')
 </body>
 </html>

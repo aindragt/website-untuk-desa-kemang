@@ -76,39 +76,9 @@
                 <div class="section-eyebrow">Kirim Pesan</div>
                 <h2 class="section-title" style="margin-bottom:1.75rem">Formulir Kontak</h2>
 
-                @if(session('success'))
-                    <div class="alert alert--success">✅ {{ session('success') }}</div>
-                @endif
-
-                @if($errors->any())
-                    <div class="alert alert--error">
-                        <ul style="margin:0;padding-left:1.25rem">
-                            @foreach($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-
                 <div class="kontak-form">
-                    <form action="{{ route('kontak.kirim') }}" method="POST">
-                        @csrf
-                        <div class="form-group">
-                            <label class="form-label" for="nama">Nama Lengkap <span style="color:red">*</span></label>
-                            <input type="text" id="nama" name="nama" class="form-control" placeholder="Masukkan nama lengkap Anda" value="{{ old('nama') }}" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="kontak">Email / No. WhatsApp <span style="color:red">*</span></label>
-                            <input type="text" id="kontak" name="kontak" class="form-control" placeholder="email@contoh.com atau 0812-xxxx-xxxx" value="{{ old('kontak') }}" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="pesan">Pesan <span style="color:red">*</span></label>
-                            <textarea id="pesan" name="pesan" class="form-control" placeholder="Tulis pesan, pertanyaan, atau keperluan Anda..." required>{{ old('pesan') }}</textarea>
-                        </div>
-                        <button type="submit" class="btn btn--primary">
-                            📨 Kirim Pesan
-                        </button>
-                    </form>
+                    {{-- LIVEWIRE CONTACT FORM --}}
+                    <livewire:contact-form />
                 </div>
             </div>
 
