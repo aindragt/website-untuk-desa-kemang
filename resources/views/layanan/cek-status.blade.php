@@ -30,7 +30,7 @@
             <div style="display:flex;gap:0.75rem">
                 <input type="text" name="nomor" class="form-control"
                        value="{{ $nomorReferensi }}"
-                       placeholder="Contoh: SKD-2025-00001"
+                       placeholder="Contoh: SKD-2025-XXXXX"
                        style="flex:1;text-transform:uppercase;letter-spacing:0.05em"
                        oninput="this.value=this.value.toUpperCase()" required>
                 <button type="submit" class="btn btn--primary" style="width:auto;padding:0.75rem 1.25rem;white-space:nowrap">
@@ -38,7 +38,7 @@
                 </button>
             </div>
             <p style="font-family:var(--font-ui);font-size:0.72rem;color:var(--teks-muted);margin-top:0.5rem">
-                Nomor referensi terdiri dari prefix surat, tahun, dan urutan. Contoh: SKD-2025-00001
+                Nomor referensi terdiri dari prefix surat, tahun, dan urutan. Contoh: SKD-2025-XXXXX
             </p>
         </form>
 
